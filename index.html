@@ -8,7 +8,8 @@
         <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png" />
         <link rel="stylesheet" type="text/css" href="koyomi.css" />
         <link rel="stylesheet" type="text/css" href="index.css" />
-        <script type="text/javascript" src="hammer.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="Button.css" />
+        <link rel="stylesheet" type="text/css" href="OldDateMonth.css" />
     </head>
     <body>
         <div id="toolbar">
@@ -22,13 +23,8 @@
         <div id="koyomi">
             <div id="gotoMonth"></div>
             <a href="#" id="today"><img class="header" src="img/Five_Elements_and_Pentagram.png" /></a>
-            
-            <h1>
-                <a href="#" class="navi" id="prev">&laquo;</a>
-                <span class="current gotoCurrent" id="date"><span class="keyNumber">0</span>月<span class="keyNumber">0</span>日(□)</span>
-                <a href="#" class="navi" id="next">&raquo;</a>
-            </h1>
-            <p class="old"><span class="gotoCurrent" id="oldDate">旧暦 0月0日</span></p>
+
+            <div id="old-date-month"></div>
             
             <a href="#六輝" class="box"><div class="title">六輝</div><div class="rokki"></div></a><!--
             --><a href="#干支" class="box"><div class="title">干支</div><div class="eto"></div></a><!--
@@ -49,9 +45,7 @@
             <img class="footer" src="img/yingyang.png" />
         </div>
         
-        <div id="top-container">
-            <a href="#" class="navi" id="top">△</a>
-        </div>
+        <div id="top-container"></div>
         
         <address>&copy; 2016 東京☆播磨陰陽道研究会<br />(窓際組)</address>
 

@@ -1,0 +1,30 @@
+.button {
+    background-color: #999999;
+    box-shadow: 3px 3px 3px rgba(0,0,0,0.2);
+    color: white;
+    display: inline-block;
+    font-family: "Times New Roman", "Hiragino Gothic ProN", sans-serif;
+    text-align: center;
+    text-decoration: none;
+}
+@media (min-width: 769px) {
+    /* PC・タブレット用表示 */
+    .button {
+        border-radius: 1em;
+        font-size: 1.5em;
+        margin: -1em 0.5em;
+        padding: -1em;
+        width: 1.5em;
+        height: 1.5em;
+    }
+}
+@media (max-width: 768px) {
+    /* モバイル用デザイン */
+    .button {
+        border-radius: 8vw;
+        font-size: 6vw;
+        margin-top: 3vw;
+        width: 9vw;
+        height: 9vw;
+    }
+}

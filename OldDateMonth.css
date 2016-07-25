@@ -1,0 +1,51 @@
+.old-date-month {
+    font-family: "Times New Roman", "Hiragino Gothic ProN", sans-serif;
+    text-align: center;
+}
+.old-date-month__caption {
+    color: #333333;
+    font-weight: bold;
+    margin: 0;
+    margin-top: 0;
+}
+.old-date-month__caption .old-date-month__current {
+    margin: 0;
+    line-height: 1em;
+}
+.old-date-month__keyNumber {
+    font-size: 1.5em;
+}
+.old-date-month__old {
+    color: #666666;
+    margin: 0;
+}
+.old-date-month--dayOfWeek0 { color: #ff6633; }
+.old-date-month--dayOfWeek6 { color: #3366ff; }
+@media (min-width: 769px) {
+    /* PC・タブレット用表示 */
+    .old-date-month__caption .old-date-month__current {
+        font-size: 2em;
+    }
+    .old-date-month__old {
+        font-size: 1.5em;
+        margin-bottom: 1em;
+    }
+}
+@media (max-width: 768px) {
+    /* モバイル用デザイン */
+    .old-date-month__prev {
+        float: left;
+        margin-left: 5vw;
+    }
+    .old-date-month__next {
+        float: right;
+        margin-right: 5vw;
+    }
+    .old-date-month__caption .old-date-month__current {
+        font-size: 8vw;
+    }
+    .old-date-month__old {
+        font-size: 6vw;
+        margin-bottom: 3vw;
+    }
+}
