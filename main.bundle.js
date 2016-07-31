@@ -51,6 +51,7 @@
 	var common = __webpack_require__(176);
 	var Button = __webpack_require__(172);
 	var OldDateMonth = __webpack_require__(173);
+	var Explanations = __webpack_require__(177);
 
 	function renderOldDateMonth(props) {
 	    if (!props.date) {
@@ -386,6 +387,7 @@
 	//     document.getElementById("next")
 	// );
 	ReactDOM.render(React.createElement(Button, { title: '△', onClick: gotoTop }), document.getElementById("top-container"));
+	ReactDOM.render(React.createElement(Explanations, { data: kExplanations }), document.getElementById("explanation"));
 
 /***/ },
 /* 1 */
@@ -22987,6 +22989,141 @@
 	    addClass: addClass,
 	    removeClass: removeClass
 	};
+
+/***/ },
+/* 177 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ReactDOM = __webpack_require__(33);
+	var Explanation = __webpack_require__(178);
+
+	module.exports = React.createClass({
+	    displayName: "exports",
+
+	    render: function () {
+	        var elts = [];
+	        this.props.data.forEach(function (aItem) {
+	            elts.push(React.createElement("hr", null));
+	            elts.push(React.createElement(Explanation, { name: aItem.name,
+	                description: aItem.description,
+	                items: aItem.items,
+	                items2: aItem.items2,
+	                cite: aItem.cite }));
+	        });
+	        return React.createElement(
+	            "div",
+	            null,
+	            elts
+	        );
+	    }
+	});
+
+/***/ },
+/* 178 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ReactDOM = __webpack_require__(33);
+	var ExplanationTable = __webpack_require__(179);
+
+	module.exports = React.createClass({
+	    displayName: "exports",
+
+	    render: function () {
+	        var name = this.props.name;
+	        var tables = [this.props.items];
+	        if (this.props.items2) {
+	            tables.push(this.props.items2);
+	        }
+	        var cite = this.props.cite ? React.createElement(
+	            "p",
+	            null,
+	            React.createElement(
+	                "cite",
+	                null,
+	                this.props.cite
+	            )
+	        ) : null;
+	        return React.createElement(
+	            "div",
+	            null,
+	            React.createElement(
+	                "h2",
+	                { id: name },
+	                name
+	            ),
+	            React.createElement(
+	                "p",
+	                null,
+	                this.props.description
+	            ),
+	            tables.map(function (aTable) {
+	                return React.createElement(ExplanationTable, { items: aTable });
+	            }),
+	            cite
+	        );
+	    }
+	});
+
+/***/ },
+/* 179 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ReactDOM = __webpack_require__(33);
+
+	module.exports = React.createClass({
+	    displayName: "exports",
+
+	    render: function () {
+	        var rows = this.props.items.map(function (aItem) {
+	            var title = aItem[0];
+	            if (!Array.isArray(title)) {
+	                title = [title, title];
+	            }
+	            var reading = aItem[1];
+	            var desc = aItem[2];
+	            var id = name + '_' + title[0];
+	            var titleHtml = React.createElement(
+	                "span",
+	                { id: id },
+	                title[1]
+	            );
+	            if (reading) {
+	                titleHtml = React.createElement(
+	                    "div",
+	                    null,
+	                    React.createElement(
+	                        "div",
+	                        { "class": "ruby" },
+	                        reading
+	                    ),
+	                    titleHtml
+	                );
+	            }
+	            return React.createElement(
+	                "tr",
+	                null,
+	                React.createElement(
+	                    "th",
+	                    null,
+	                    titleHtml
+	                ),
+	                React.createElement(
+	                    "td",
+	                    null,
+	                    desc
+	                )
+	            );
+	        });
+	        return React.createElement(
+	            "table",
+	            null,
+	            rows
+	        );
+	    }
+	});
 
 /***/ }
 /******/ ]);
