@@ -82,53 +82,6 @@ a.box:nth-child(2n):hover {
     width: 16.6vw;
     height: 16.6vw;
 }
-#explanation {
-    background-color: #eeeeee;
-    border: 1px solid #cccccc;
-    padding: 1em;
-}
-#explanation h2 {
-    float: left;
-    font-size: 2em;
-    margin: 0 0.5em 0 0;
-    text-align: right;
-    vertical-align: top;
-}
-#explanation p {
-    margin: 0;
-    padding: 0;
-    vertical-align: bottom;
-}
-#explanation table {
-    border: 2px solid #333333;
-    border-collapse: collapse;
-    clear: both;
-    color: #333333;
-    margin: 1em 0 0 0;
-    width: 100%;
-}
-#explanation td,
-#explanation th {
-    background-color: white;
-    border: 1px solid #666666;
-}
-#explanation th {
-    font-size: 1.5em;
-    line-height: 1.0;
-    padding: 0.15em;
-    vertical-align: center;
-    white-space: nowrap;
-}
-#explanation hr {
-    clear: both;
-    border: none;
-    border-bottom: 1px dotted #999999;
-}
-#explanation .ruby {
-    font-size: 0.5em;
-    position: relative;
-    z-index: 1;
-}
 .marked {
     background-color: yellow;
 }
@@ -260,12 +213,8 @@ a.box:nth-child(2n):hover {
         height: 2em;
     }
     #explanation {
-        padding: 1em 3em;
         margin: 2em auto;
-        width: 36em;
-    }
-    #explanation hr {
-        margin: 1em -1.5em;
+        width: 42em;
     }
     #top-container {
         right: 2em;
@@ -327,9 +276,6 @@ a.box:nth-child(2n):hover {
     #explanation {
         margin: 5vw;
         width: auto;
-    }
-    #explanation hr {
-        margin: 1em 0;
     }
     #top-container {
         left: 7vw;

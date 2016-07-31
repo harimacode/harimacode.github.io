@@ -104,41 +104,6 @@
 	    description: "物事の吉凶(人の気の現出)が変動するときに出る音のことで、<strong>兆し</strong>を読みます。",
 	    items: [["海中金", "かいちゅうのこん", "表に出るべきものの、海中に閉ざされる兆し。"], ["爐中火", "ろちゅうのか", "燃え上がる炎のごとく、運気の上がる兆し。"], ["大林木", "たいりんのもく", "多くの木々は茂り、森を成す兆し。"], ["路傍土", "ろぼうのど", "今は路傍の土なれど、やがて日の目を見るの兆し。"], ["剣鋒金", "けんぼうのこん", "物事の極みにありて、最後の人手を探るものありとの兆し。"], ["山頭火", "さんとうのか", "はげ山に火事ありて、焼き尽くすべき勢いも、無き兆し。"], ["澗下水", "かんげのすい", "水の尽きること無く、溢れ出づる兆し。"], ["城頭土", "じょうとうのど", "運に勢い有るの兆し。"], ["白蝋金", "はくろうのこん", "水で鍛うれば、形、整うの兆し。"], ["楊柳木", "ようりゅうのもく", "今は勢いを失うの兆し。"], ["井泉水", "いせんのすい", "小さき井戸なれども、水の満ちる兆し。"], ["屋上土", "おくじょうのど", "土の気の塞がる兆し。"], ["霹靂火", "へきれきのか", "晴天の霹靂を見るも、変化せずの兆し。"], ["松柏木", "しょうはくのもく", "雲を突き、そびえ立つの兆し。春を待つに勢いあり。"], ["長流水", "ちょうりゅうのすい", "水の流れの絶えることなく、流るる川の兆し。"], ["沙中金", "さちゅうのこん", "砂の内に秘める金の兆し。目立つ時は光を放ち、動かぬ時は、砂にまぎれる。"], ["山下火", "さんげのか", "ただ燃えるがごとく、広がり伸べる兆し。"], ["平地木", "へいちのもく", "淋しくたたずむ、ひとつの木の兆し。"], ["壁上土", "へきじょうのど", "壁の上の土は、もはや、土にあらず。土の力を失う兆し。"], ["金箔金", "きんぱくのこん", "死滅の兆し。金も使い道を誤れば、かえってその力を失う。"], ["覆燈火", "ふくとうのか", "倒れたる灯籠の灯りは、夜を照らさずの兆し。"], ["天河水", "てんがのすい", "豊なる水の流れ。人に徳を施し、福をもたらすの兆し。"], ["大駅土", "だいえきのど", "大きなる 駅 に人馬の行き交うの兆し。"], ["剣釧金", "けんせんのこん", "万物の乱れの、防ぎありの兆し。"], ["桑柘木", "そうたくのもく", "絶えて春を待つの兆し。やがて、成長せし木々あり。"], ["大渓水", "たいけいのすい", "勢い盛んな水の気の兆し。"], ["沙中土", "さちゅうのど", "砂の中の土の兆し。役立たぬこと多し。"], ["天上火", "てんじょうのか", "天地に光りあるの兆し。"], ["柘榴木", "ざくりゅうのもく", "外に現れず、内に秘めたる兆し。"], ["大海水", "たいかいのすい", "天に連なる、大海の水の兆し。"]]
 	}];
-	function makeExplanations() {
-	    var sections = [];
-	    kExplanations.forEach(function (aExplanation) {
-	        var name = aExplanation.name;
-	        var section = ['<h2 id="' + name + '">' + name + '</h2>', '<p>' + aExplanation.description + '</p>'];
-	        var tables = [aExplanation.items];
-	        if (aExplanation.items2) {
-	            tables.push(aExplanation.items2);
-	        }
-	        tables.forEach(function (aTable) {
-	            section.push('<table>');
-	            aTable.forEach(function (aItem) {
-	                var title = aItem[0];
-	                if (!Array.isArray(title)) {
-	                    title = [title, title];
-	                }
-	                var reading = aItem[1];
-	                var desc = aItem[2];
-	                var id = name + '_' + title[0];
-	                var titleHtml = '<span id="' + id + '">' + title[1] + '</span>';
-	                if (reading) {
-	                    titleHtml = '<div class="ruby">' + reading + '</div>' + titleHtml;
-	                }
-	                section.push('<tr><th>' + titleHtml + '</th><td>' + desc + '</td></tr>');
-	            });
-	            section.push('</table>');
-	        });
-	        var cite = aExplanation.cite;
-	        if (cite) {
-	            section.push('<p><cite>' + cite + '</cite></p>');
-	        }
-	        sections.push(section.join('\n'));
-	    });
-	    return sections.join('\n<hr>\n');
-	}
 
 	function set(id, value) {
 	    document.getElementById(id).innerHTML = value;
@@ -316,7 +281,6 @@
 	}
 	window.addEventListener("load", function (e) {
 	    common.removeClass(document.getElementById("koyomi"), "month");
-	    document.getElementById("explanation").innerHTML = makeExplanations();
 
 	    var hash = common.parseHash(document.location.href);
 	    if (hash) {
@@ -386,8 +350,8 @@
 	//     <Button title="&raquo;" onClick={next} />,
 	//     document.getElementById("next")
 	// );
-	ReactDOM.render(React.createElement(Button, { title: '△', onClick: gotoTop }), document.getElementById("top-container"));
 	ReactDOM.render(React.createElement(Explanations, { data: kExplanations }), document.getElementById("explanation"));
+	ReactDOM.render(React.createElement(Button, { title: '△', onClick: gotoTop }), document.getElementById("top-container"));
 
 /***/ },
 /* 1 */
@@ -23004,8 +22968,12 @@
 	    render: function () {
 	        var elts = [];
 	        this.props.data.forEach(function (aItem) {
-	            elts.push(React.createElement("hr", null));
-	            elts.push(React.createElement(Explanation, { name: aItem.name,
+	            var index = elts.length;
+	            if (index) {
+	                elts.push(React.createElement("hr", { key: "separator" + index, className: "explanations__separator" }));
+	            }
+	            elts.push(React.createElement(Explanation, { key: "explanation" + index,
+	                name: aItem.name,
 	                description: aItem.description,
 	                items: aItem.items,
 	                items2: aItem.items2,
@@ -23013,7 +22981,7 @@
 	        });
 	        return React.createElement(
 	            "div",
-	            null,
+	            { className: "explanations" },
 	            elts
 	        );
 	    }
@@ -23032,35 +23000,24 @@
 
 	    render: function () {
 	        var name = this.props.name;
-	        var tables = [this.props.items];
-	        if (this.props.items2) {
-	            tables.push(this.props.items2);
-	        }
+	        var items2 = this.props.items2 ? React.createElement(ExplanationTable, { name: name, items: this.props.items2 }) : null;
 	        var cite = this.props.cite ? React.createElement(
 	            "p",
 	            null,
-	            React.createElement(
-	                "cite",
-	                null,
-	                this.props.cite
-	            )
+	            React.createElement("cite", { dangerouslySetInnerHTML: { __html: this.props.cite } })
 	        ) : null;
 	        return React.createElement(
 	            "div",
 	            null,
 	            React.createElement(
 	                "h2",
-	                { id: name },
+	                { className: "explanation__title", id: name },
 	                name
 	            ),
-	            React.createElement(
-	                "p",
-	                null,
-	                this.props.description
-	            ),
-	            tables.map(function (aTable) {
-	                return React.createElement(ExplanationTable, { items: aTable });
-	            }),
+	            React.createElement("p", { className: "explanation__description",
+	                dangerouslySetInnerHTML: { __html: this.props.description } }),
+	            React.createElement(ExplanationTable, { name: name, items: this.props.items }),
+	            items2,
 	            cite
 	        );
 	    }
@@ -23077,6 +23034,7 @@
 	    displayName: "exports",
 
 	    render: function () {
+	        var name = this.props.name;
 	        var rows = this.props.items.map(function (aItem) {
 	            var title = aItem[0];
 	            if (!Array.isArray(title)) {
@@ -23096,7 +23054,7 @@
 	                    null,
 	                    React.createElement(
 	                        "div",
-	                        { "class": "ruby" },
+	                        { className: "explanation-table__title-ruby" },
 	                        reading
 	                    ),
 	                    titleHtml
@@ -23104,23 +23062,27 @@
 	            }
 	            return React.createElement(
 	                "tr",
-	                null,
+	                { key: id },
 	                React.createElement(
 	                    "th",
-	                    null,
+	                    { className: "explanation-table__title-cell" },
 	                    titleHtml
 	                ),
 	                React.createElement(
 	                    "td",
-	                    null,
+	                    { className: "explanation-table__text-cell" },
 	                    desc
 	                )
 	            );
 	        });
 	        return React.createElement(
 	            "table",
-	            null,
-	            rows
+	            { className: "explanation-table" },
+	            React.createElement(
+	                "tbody",
+	                null,
+	                rows
+	            )
 	        );
 	    }
 	});

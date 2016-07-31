@@ -1,0 +1,62 @@
+.explanations {
+    background-color: #eeeeee;
+    border: 1px solid #cccccc;
+    padding: 1em;
+}
+.explanation__title {
+    float: left;
+    font-size: 2em;
+    margin: 0 0.5em 0 0;
+    text-align: right;
+    vertical-align: top;
+}
+.explanation__description {
+    margin: 0;
+    padding: 0;
+    vertical-align: bottom;
+}
+.explanation-table {
+    border: 2px solid #333333;
+    border-collapse: collapse;
+    clear: both;
+    color: #333333;
+    margin: 1em 0 0 0;
+    width: 100%;
+}
+.explanation-table__title-cell,
+.explanation-table__text-cell {
+    background-color: white;
+    border: 1px solid #666666;
+}
+.explanation-table__title-cell {
+    font-size: 1.5em;
+    line-height: 1.0;
+    padding: 0.15em;
+    vertical-align: center;
+    white-space: nowrap;
+}
+.explanations__separator {
+    clear: both;
+    border: none;
+    border-bottom: 1px dotted #999999;
+}
+.explanation-table__title-ruby {
+    font-size: 0.5em;
+    position: relative;
+    z-index: 1;
+}
+@media (min-width: 769px) {
+    /* PC・タブレット用表示 */
+    .explanations {
+        padding: 1em 3em;
+    }
+    .explanations__separator {
+        margin: 1em -1.5em;
+    }
+}
+@media (max-width: 768px) {
+    /* モバイル用デザイン */
+    .explanations__separator {
+        margin: 1em 0;
+    }
+}
