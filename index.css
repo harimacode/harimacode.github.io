@@ -10,34 +10,6 @@
 #koyomi a#today:hover {
     background-color: transparent;
 }
-.box {
-    box-shadow: 3px 3px 3px rgba(0,0,0,0.2);
-    line-height: 1.0;
-}
-a.box:nth-child(2n):hover {
-    background-color:#333333;
-}
-.box {
-    background-color: #666666;
-    color: white;
-    display: inline-block;
-    position: relative;
-}
-.box .title {
-    color: #cccccc;
-    text-align: left;
-}
-.box div:last-child {
-    font-weight: bold;
-    position: absolute;
-    text-align: right;
-}
-.box:nth-child(2n+1) {
-    background-color: #999999;
-}
-.box:nth-child(2n+1) .title {
-    color: white;
-}
 #tags .tag {
     border: 1px solid black;
     border-radius: 3px;
@@ -59,28 +31,6 @@ a.box:nth-child(2n):hover {
     background-color: #dddddd;
     border-color: darkgray;
     color: gray;
-}
-#toolbar {
-    background-color: #666666;
-    position: fixed;
-    top: -16.6vw;
-    left: 0;
-    opacity: 0;
-    transition: all 0.25s;
-    z-index: 2;
-    width: 100%;
-}
-#toolbar.visible {
-    top: 0;
-    opacity: 1;
-}
-#toolbar .box {
-    padding: 0;
-    margin: 0;
-    display: block;
-    float: left;
-    width: 16.6vw;
-    height: 16.6vw;
 }
 .marked {
     background-color: yellow;
@@ -185,32 +135,8 @@ a.box:nth-child(2n):hover {
     #gotoMonth a {
         font-size: 1.5em;
     }
-    .box {
-        font-size: 1.8em;
-        margin: 0.3em;
-        padding: 0.1em;
-        width: 3.2em;
-        height: 3.2em;
-    }
-    .box .title {
-        font-size: 0.75em;
-    }
-    .box div:last-child {
-        right: 0.1em;
-        bottom: 0.1em;
-    }
     #tags {
         margin: 0.1em auto 1em auto;
-    }
-    #toolbar {
-        width: 42em;
-        margin-left: calc((100% - 42em) / 2);
-        margin-left: -webkit-calc((100% - 42em) / 2);
-        margin-right: auto;
-    }
-    #toolbar .box {
-        width: 16.66%;
-        height: 2em;
     }
     #explanation {
         margin: 2em auto;
@@ -251,27 +177,8 @@ a.box:nth-child(2n):hover {
         left: 7vw;
         top: 6vw;
     }
-    .box {
-        font-size: 7vw;
-        margin: 2vw;
-        padding: 1vw;
-        width: 24vw;
-        height: 24vw;
-    }
-    .box .title {
-        font-size: 5vw;
-    }
-    .box div:last-child {
-        right: 1vw;
-        bottom: 1vw;
-    }
     #tags {
         margin: 1vw auto;
-    }
-    #toolbar .nattin {
-        white-space: nowrap;
-        width: 2em;
-        overflow: hidden;
     }
     #explanation {
         margin: 5vw;

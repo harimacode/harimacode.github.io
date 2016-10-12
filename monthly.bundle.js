@@ -44,17 +44,28 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Hammer = __webpack_require__(174);
+	"use strict";
+
+	var _OldDateMonth = __webpack_require__(173);
+
+	var _OldDateMonth2 = _interopRequireDefault(_OldDateMonth);
+
+	var _CopyrightBox = __webpack_require__(180);
+
+	var _CopyrightBox2 = _interopRequireDefault(_CopyrightBox);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Hammer = __webpack_require__(181);
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(33);
-	var Button = __webpack_require__(172);
-	var OldDateMonth = __webpack_require__(173);
-	var oc = __webpack_require__(175);
+
+	var oc = __webpack_require__(182);
 	var common = __webpack_require__(176);
 
 	function DefaultTagger() {}
 	DefaultTagger.prototype = {
-	    tagForDate: function (aDate, aMoon) {
+	    tagForDate: function tagForDate(aDate, aMoon) {
 	        var topTag = "";
 	        var tags = oc.tagsForDate(aDate, aMoon);
 	        if (tags.length > 0) {
@@ -69,7 +80,7 @@
 	    this.mode = aMode;
 	}
 	ModeTagger.prototype = {
-	    stringForDate: function (aDate, aMoon) {
+	    stringForDate: function stringForDate(aDate, aMoon) {
 	        // 月表示の更新
 	        var jd = oc.juliusDate(aDate);
 	        switch (this.mode) {
@@ -87,7 +98,7 @@
 	                return oc.nattin(jd);
 	        }
 	    },
-	    hueForString: function (aString) {
+	    hueForString: function hueForString(aString) {
 	        var all = null;
 	        switch (this.mode) {
 	            case "六輝":
@@ -105,7 +116,7 @@
 	        }
 	        return 360 * all.indexOf(aString) / all.length;
 	    },
-	    tagForDate: function (aDate, aMoon) {
+	    tagForDate: function tagForDate(aDate, aMoon) {
 	        var s = this.stringForDate(aDate, aMoon);
 	        var hue = this.hueForString(s);
 	        return '<span class="tag" style="background-color: hsl(' + hue + ', 100%, 93%);">' + s + '</span>';
@@ -145,7 +156,7 @@
 	    return new MonthlyCalendar(date.getFullYear(), date.getMonth());
 	};
 	MonthlyCalendar.prototype = {
-	    render: function (aTagger) {
+	    render: function render(aTagger) {
 	        // TODO: もうちょっとモダンな実現方法にしたいな…
 	        var s = '<div class="week">';
 	        var dow = "日月火水木金土";
@@ -220,7 +231,7 @@
 	    if (!props.subtitle) {
 	        props.subtitle = "";
 	    }
-	    ReactDOM.render(React.createElement(OldDateMonth, { type: "month",
+	    ReactDOM.render(React.createElement(_OldDateMonth2.default, { type: "month",
 	        date: props.date,
 	        subtitle: props.subtitle,
 	        onPrevClick: prev,
@@ -239,6 +250,8 @@
 	    var tagger = newMode == "" ? new DefaultTagger() : new ModeTagger(newMode);
 	    document.getElementById("monthlyCalendar").innerHTML = month.render(tagger);
 	}
+
+	ReactDOM.render(React.createElement(_CopyrightBox2.default, null), document.getElementById("copyright-box"));
 
 	var month;
 	function gotoMonthOfHash() {
@@ -21322,114 +21335,285 @@
 /* 172 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var React = __webpack_require__(1);
+	"use strict";
 
-	module.exports = React.createClass({
-	    displayName: "exports",
-
-	    handleClick: function (e) {
-	        this.props.onClick(e);
-	    },
-	    render: function () {
-	        var cls = this.props.className + " button";
-	        return React.createElement(
-	            "a",
-	            { href: "#",
-	                className: cls,
-	                onClick: this.handleClick },
-	            this.props.title
-	        );
-	    }
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
 	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Button = function (_React$Component) {
+	    _inherits(Button, _React$Component);
+
+	    function Button() {
+	        _classCallCheck(this, Button);
+
+	        return _possibleConstructorReturn(this, (Button.__proto__ || Object.getPrototypeOf(Button)).apply(this, arguments));
+	    }
+
+	    _createClass(Button, [{
+	        key: "handleClick",
+	        value: function handleClick(e) {
+	            this.props.onClick(e);
+	        }
+	    }, {
+	        key: "render",
+	        value: function render() {
+	            var cls = this.props.className + " button";
+	            return _react2.default.createElement(
+	                "a",
+	                { href: "#",
+	                    className: cls,
+	                    onClick: this.handleClick.bind(this) },
+	                this.props.title
+	            );
+	        }
+	    }]);
+
+	    return Button;
+	}(_react2.default.Component);
+
+	exports.default = Button;
 
 /***/ },
 /* 173 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var React = __webpack_require__(1);
-	var ReactDOM = __webpack_require__(33);
-	var Button = __webpack_require__(172);
+	"use strict";
 
-	module.exports = React.createClass({
-	    displayName: "exports",
-
-	    isYearMonth: function () {
-	        return this.props.type === "month";
-	    },
-	    dayOfWeek: function dayOfWeek(dow) {
-	        return "日月火水木金土".charAt(dow);
-	    },
-	    render: function () {
-	        var year = this.props.date.getFullYear();
-	        var month = this.props.date.getMonth() + 1;
-	        var date = this.props.date.getDate();
-	        var day = this.props.date.getDay();
-	        var firstLine = this.isYearMonth() ? React.createElement(
-	            "span",
-	            { className: "old-date-month__current", id: "date", onClick: this.props.onCurrentClick },
-	            React.createElement(
-	                "span",
-	                { className: "old-date-month__keyNumber" },
-	                year
-	            ),
-	            "年",
-	            React.createElement(
-	                "span",
-	                { className: "old-date-month__keyNumber" },
-	                month
-	            ),
-	            "月"
-	        ) : React.createElement(
-	            "span",
-	            { className: "old-date-month__current", id: "date", onClick: this.props.onCurrentClick },
-	            React.createElement(
-	                "span",
-	                { className: "old-date-month__keyNumber" },
-	                month
-	            ),
-	            "月",
-	            React.createElement(
-	                "span",
-	                { className: "old-date-month__keyNumber" },
-	                date
-	            ),
-	            "日",
-	            React.createElement(
-	                "span",
-	                { className: "old-date-month--dayOfWeek" + day },
-	                "(",
-	                this.dayOfWeek(day),
-	                ")"
-	            )
-	        );
-	        return React.createElement(
-	            "div",
-	            { className: "old-date-month" },
-	            React.createElement(
-	                "div",
-	                { className: "old-date-month__caption" },
-	                React.createElement(Button, { className: "old-date-month__prev", title: "«", onClick: this.props.onPrevClick }),
-	                firstLine,
-	                React.createElement(Button, { className: "old-date-month__next", title: "»", onClick: this.props.onNextClick })
-	            ),
-	            React.createElement(
-	                "p",
-	                { className: "old-date-month__old" },
-	                React.createElement(
-	                    "span",
-	                    { onClick: this.props.onCurrentClick },
-	                    this.props.subtitle
-	                )
-	            )
-	        );
-	    }
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
 	});
 
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(33);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	var _Button = __webpack_require__(172);
+
+	var _Button2 = _interopRequireDefault(_Button);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var OldDateMonth = function (_React$Component) {
+	    _inherits(OldDateMonth, _React$Component);
+
+	    function OldDateMonth() {
+	        _classCallCheck(this, OldDateMonth);
+
+	        return _possibleConstructorReturn(this, (OldDateMonth.__proto__ || Object.getPrototypeOf(OldDateMonth)).apply(this, arguments));
+	    }
+
+	    _createClass(OldDateMonth, [{
+	        key: "isYearMonth",
+	        value: function isYearMonth() {
+	            return this.props.type === "month";
+	        }
+	    }, {
+	        key: "dayOfWeek",
+	        value: function dayOfWeek(dow) {
+	            return "日月火水木金土".charAt(dow);
+	        }
+	    }, {
+	        key: "render",
+	        value: function render() {
+	            var year = this.props.date.getFullYear();
+	            var month = this.props.date.getMonth() + 1;
+	            var date = this.props.date.getDate();
+	            var day = this.props.date.getDay();
+	            var firstLine = this.isYearMonth() ? _react2.default.createElement(
+	                "span",
+	                { className: "old-date-month__current", id: "date", onClick: this.props.onCurrentClick },
+	                _react2.default.createElement(
+	                    "span",
+	                    { className: "old-date-month__keyNumber" },
+	                    year
+	                ),
+	                "年",
+	                _react2.default.createElement(
+	                    "span",
+	                    { className: "old-date-month__keyNumber" },
+	                    month
+	                ),
+	                "月"
+	            ) : _react2.default.createElement(
+	                "span",
+	                { className: "old-date-month__current", id: "date", onClick: this.props.onCurrentClick },
+	                _react2.default.createElement(
+	                    "span",
+	                    { className: "old-date-month__keyNumber" },
+	                    month
+	                ),
+	                "月",
+	                _react2.default.createElement(
+	                    "span",
+	                    { className: "old-date-month__keyNumber" },
+	                    date
+	                ),
+	                "日",
+	                _react2.default.createElement(
+	                    "span",
+	                    { className: "old-date-month--dayOfWeek" + day },
+	                    "(",
+	                    this.dayOfWeek(day),
+	                    ")"
+	                )
+	            );
+	            return _react2.default.createElement(
+	                "div",
+	                { className: "old-date-month" },
+	                _react2.default.createElement(
+	                    "div",
+	                    { className: "old-date-month__caption" },
+	                    _react2.default.createElement(_Button2.default, { className: "old-date-month__prev", title: "«", onClick: this.props.onPrevClick }),
+	                    firstLine,
+	                    _react2.default.createElement(_Button2.default, { className: "old-date-month__next", title: "»", onClick: this.props.onNextClick })
+	                ),
+	                _react2.default.createElement(
+	                    "p",
+	                    { className: "old-date-month__old" },
+	                    _react2.default.createElement(
+	                        "span",
+	                        { onClick: this.props.onCurrentClick },
+	                        this.props.subtitle
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+
+	    return OldDateMonth;
+	}(_react2.default.Component);
+
+	exports.default = OldDateMonth;
+
 /***/ },
-/* 174 */
+/* 174 */,
+/* 175 */,
+/* 176 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	function parseHash(url) {
+	    var parts = url.split('#');
+	    if (parts.length < 2) {
+	        return null;
+	    }
+	    return decodeURIComponent(parts[1]);
+	}
+	function addClass(e, cls) {
+	    var a = e.getAttribute("class");
+	    var classes = a ? a.split(' ') : [];
+	    classes.push(cls);
+	    e.setAttribute("class", classes.join(' '));
+	}
+	function removeClass(e, cls) {
+	    var newClasses = [];
+	    var a = e.getAttribute("class");
+	    var classes = a ? a.split(' ') : [];
+	    classes.forEach(function (c) {
+	        if (c != cls) {
+	            newClasses.push(c);
+	        }
+	    });
+	    e.setAttribute("class", newClasses.join(' '));
+	}
+
+	module.exports = {
+	    parseHash: parseHash,
+	    addClass: addClass,
+	    removeClass: removeClass
+	};
+
+/***/ },
+/* 177 */,
+/* 178 */,
+/* 179 */,
+/* 180 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_RESULT__;/*! Hammer.JS - v2.0.8 - 2016-04-23
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var CopyrightBox = function (_React$Component) {
+	    _inherits(CopyrightBox, _React$Component);
+
+	    function CopyrightBox() {
+	        _classCallCheck(this, CopyrightBox);
+
+	        return _possibleConstructorReturn(this, (CopyrightBox.__proto__ || Object.getPrototypeOf(CopyrightBox)).apply(this, arguments));
+	    }
+
+	    _createClass(CopyrightBox, [{
+	        key: "render",
+	        value: function render() {
+	            return _react2.default.createElement(
+	                "address",
+	                null,
+	                "© 2016 東京☆播磨陰陽道研究会",
+	                _react2.default.createElement("br", null),
+	                "(窓際組)"
+	            );
+	        }
+	    }]);
+
+	    return CopyrightBox;
+	}(_react2.default.Component);
+
+	exports.default = CopyrightBox;
+
+/***/ },
+/* 181 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_RESULT__;"use strict";
+
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+
+	/*! Hammer.JS - v2.0.8 - 2016-04-23
 	 * http://hammerjs.github.io/
 	 *
 	 * Copyright (c) 2016 Jorik Tangelder;
@@ -21441,7 +21625,11 @@
 	  }function f(a, b, c) {
 	    return Array.isArray(a) ? (g(a, c[b], c), !0) : !1;
 	  }function g(a, b, c) {
-	    var e;if (a) if (a.forEach) a.forEach(b, c);else if (a.length !== d) for (e = 0; e < a.length;) b.call(c, a[e], e, a), e++;else for (e in a) a.hasOwnProperty(e) && b.call(c, a[e], e, a);
+	    var e;if (a) if (a.forEach) a.forEach(b, c);else if (a.length !== d) for (e = 0; e < a.length;) {
+	      b.call(c, a[e], e, a), e++;
+	    } else for (e in a) {
+	      a.hasOwnProperty(e) && b.call(c, a[e], e, a);
+	    }
 	  }function h(b, c, d) {
 	    var e = "DEPRECATED METHOD: " + c + "\n" + d + " AT \n";return function () {
 	      var c = new Error("get-stack-trace"),
@@ -21456,7 +21644,7 @@
 	      return a.apply(b, arguments);
 	    };
 	  }function k(a, b) {
-	    return typeof a == oa ? a.apply(b ? b[0] || d : d, b) : a;
+	    return (typeof a === "undefined" ? "undefined" : _typeof(a)) == oa ? a.apply(b ? b[0] || d : d, b) : a;
 	  }function l(a, b) {
 	    return a === d ? b : a;
 	  }function m(a, b, c) {
@@ -21531,9 +21719,13 @@
 	          l = F(i, j, k);e = l.x, f = l.y, c = qa(l.x) > qa(l.y) ? l.x : l.y, g = G(j, k), a.lastInterval = b;
 	    } else c = h.velocity, e = h.velocityX, f = h.velocityY, g = h.direction;b.velocity = c, b.velocityX = e, b.velocityY = f, b.direction = g;
 	  }function D(a) {
-	    for (var b = [], c = 0; c < a.pointers.length;) b[c] = { clientX: pa(a.pointers[c].clientX), clientY: pa(a.pointers[c].clientY) }, c++;return { timeStamp: ra(), pointers: b, center: E(b), deltaX: a.deltaX, deltaY: a.deltaY };
+	    for (var b = [], c = 0; c < a.pointers.length;) {
+	      b[c] = { clientX: pa(a.pointers[c].clientX), clientY: pa(a.pointers[c].clientY) }, c++;
+	    }return { timeStamp: ra(), pointers: b, center: E(b), deltaX: a.deltaX, deltaY: a.deltaY };
 	  }function E(a) {
-	    var b = a.length;if (1 === b) return { x: pa(a[0].clientX), y: pa(a[0].clientY) };for (var c = 0, d = 0, e = 0; b > e;) c += a[e].clientX, d += a[e].clientY, e++;return { x: pa(c / b), y: pa(d / b) };
+	    var b = a.length;if (1 === b) return { x: pa(a[0].clientX), y: pa(a[0].clientY) };for (var c = 0, d = 0, e = 0; b > e;) {
+	      c += a[e].clientX, d += a[e].clientY, e++;
+	    }return { x: pa(c / b), y: pa(d / b) };
 	  }function F(a, b, c) {
 	    return { x: b / a || 0, y: c / a || 0 };
 	  }function G(a, b) {
@@ -21567,7 +21759,11 @@
 	        h = [],
 	        i = this.target;if (f = c.filter(function (a) {
 	      return o(a.target, i);
-	    }), b === Ea) for (e = 0; e < f.length;) d[f[e].identifier] = !0, e++;for (e = 0; e < g.length;) d[g[e].identifier] && h.push(g[e]), b & (Ga | Ha) && delete d[g[e].identifier], e++;return h.length ? [t(f.concat(h), "identifier", !0), h] : void 0;
+	    }), b === Ea) for (e = 0; e < f.length;) {
+	      d[f[e].identifier] = !0, e++;
+	    }for (e = 0; e < g.length;) {
+	      d[g[e].identifier] && h.push(g[e]), b & (Ga | Ha) && delete d[g[e].identifier], e++;
+	    }return h.length ? [t(f.concat(h), "identifier", !0), h] : void 0;
 	  }function R() {
 	    x.apply(this, arguments);var a = j(this.handler, this);this.touch = new P(this.manager, a), this.mouse = new L(this.manager, a), this.primaryTouch = null, this.lastTouches = [];
 	  }function S(a, b) {
@@ -21575,7 +21771,7 @@
 	  }function T(a) {
 	    var b = a.changedPointers[0];if (b.identifier === this.primaryTouch) {
 	      var c = { x: b.clientX, y: b.clientY };this.lastTouches.push(c);var d = this.lastTouches,
-	          e = function () {
+	          e = function e() {
 	        var a = d.indexOf(c);a > -1 && d.splice(a, 1);
 	      };setTimeout(e, cb);
 	    }
@@ -21639,10 +21835,14 @@
 	      qa = Math.abs,
 	      ra = Date.now;la = "function" != typeof Object.assign ? function (a) {
 	    if (a === d || null === a) throw new TypeError("Cannot convert undefined or null to object");for (var b = Object(a), c = 1; c < arguments.length; c++) {
-	      var e = arguments[c];if (e !== d && null !== e) for (var f in e) e.hasOwnProperty(f) && (b[f] = e[f]);
+	      var e = arguments[c];if (e !== d && null !== e) for (var f in e) {
+	        e.hasOwnProperty(f) && (b[f] = e[f]);
+	      }
 	    }return b;
 	  } : Object.assign;var sa = h(function (a, b, c) {
-	    for (var e = Object.keys(b), f = 0; f < e.length;) (!c || c && a[e[f]] === d) && (a[e[f]] = b[e[f]]), f++;return a;
+	    for (var e = Object.keys(b), f = 0; f < e.length;) {
+	      (!c || c && a[e[f]] === d) && (a[e[f]] = b[e[f]]), f++;
+	    }return a;
 	  }, "extend", "Use `assign`."),
 	      ta = h(function (a, b) {
 	    return sa(a, b, !0);
@@ -21670,18 +21870,18 @@
 	      Oa = La | Ma,
 	      Pa = Na | Oa,
 	      Qa = ["x", "y"],
-	      Ra = ["clientX", "clientY"];x.prototype = { handler: function () {}, init: function () {
+	      Ra = ["clientX", "clientY"];x.prototype = { handler: function handler() {}, init: function init() {
 	      this.evEl && m(this.element, this.evEl, this.domHandler), this.evTarget && m(this.target, this.evTarget, this.domHandler), this.evWin && m(w(this.element), this.evWin, this.domHandler);
-	    }, destroy: function () {
+	    }, destroy: function destroy() {
 	      this.evEl && n(this.element, this.evEl, this.domHandler), this.evTarget && n(this.target, this.evTarget, this.domHandler), this.evWin && n(w(this.element), this.evWin, this.domHandler);
 	    } };var Sa = { mousedown: Ea, mousemove: Fa, mouseup: Ga },
 	      Ta = "mousedown",
-	      Ua = "mousemove mouseup";i(L, x, { handler: function (a) {
+	      Ua = "mousemove mouseup";i(L, x, { handler: function handler(a) {
 	      var b = Sa[a.type];b & Ea && 0 === a.button && (this.pressed = !0), b & Fa && 1 !== a.which && (b = Ga), this.pressed && (b & Ga && (this.pressed = !1), this.callback(this.manager, b, { pointers: [a], changedPointers: [a], pointerType: Ba, srcEvent: a }));
 	    } });var Va = { pointerdown: Ea, pointermove: Fa, pointerup: Ga, pointercancel: Ha, pointerout: Ha },
 	      Wa = { 2: za, 3: Aa, 4: Ba, 5: Ca },
 	      Xa = "pointerdown",
-	      Ya = "pointermove pointerup pointercancel";a.MSPointerEvent && !a.PointerEvent && (Xa = "MSPointerDown", Ya = "MSPointerMove MSPointerUp MSPointerCancel"), i(M, x, { handler: function (a) {
+	      Ya = "pointermove pointerup pointercancel";a.MSPointerEvent && !a.PointerEvent && (Xa = "MSPointerDown", Ya = "MSPointerMove MSPointerUp MSPointerCancel"), i(M, x, { handler: function handler(a) {
 	      var b = this.store,
 	          c = !1,
 	          d = a.type.toLowerCase().replace("ms", ""),
@@ -21691,21 +21891,21 @@
 	          h = r(b, a.pointerId, "pointerId");e & Ea && (0 === a.button || g) ? 0 > h && (b.push(a), h = b.length - 1) : e & (Ga | Ha) && (c = !0), 0 > h || (b[h] = a, this.callback(this.manager, e, { pointers: b, changedPointers: [a], pointerType: f, srcEvent: a }), c && b.splice(h, 1));
 	    } });var Za = { touchstart: Ea, touchmove: Fa, touchend: Ga, touchcancel: Ha },
 	      $a = "touchstart",
-	      _a = "touchstart touchmove touchend touchcancel";i(N, x, { handler: function (a) {
+	      _a = "touchstart touchmove touchend touchcancel";i(N, x, { handler: function handler(a) {
 	      var b = Za[a.type];if (b === Ea && (this.started = !0), this.started) {
 	        var c = O.call(this, a, b);b & (Ga | Ha) && c[0].length - c[1].length === 0 && (this.started = !1), this.callback(this.manager, b, { pointers: c[0], changedPointers: c[1], pointerType: za, srcEvent: a });
 	      }
 	    } });var ab = { touchstart: Ea, touchmove: Fa, touchend: Ga, touchcancel: Ha },
-	      bb = "touchstart touchmove touchend touchcancel";i(P, x, { handler: function (a) {
+	      bb = "touchstart touchmove touchend touchcancel";i(P, x, { handler: function handler(a) {
 	      var b = ab[a.type],
 	          c = Q.call(this, a, b);c && this.callback(this.manager, b, { pointers: c[0], changedPointers: c[1], pointerType: za, srcEvent: a });
 	    } });var cb = 2500,
-	      db = 25;i(R, x, { handler: function (a, b, c) {
+	      db = 25;i(R, x, { handler: function handler(a, b, c) {
 	      var d = c.pointerType == za,
 	          e = c.pointerType == Ba;if (!(e && c.sourceCapabilities && c.sourceCapabilities.firesTouchEvents)) {
 	        if (d) S.call(this, b, c);else if (e && U.call(this, c)) return;this.callback(a, b, c);
 	      }
-	    }, destroy: function () {
+	    }, destroy: function destroy() {
 	      this.touch.destroy(), this.mouse.destroy();
 	    } });var eb = u(na.style, "touchAction"),
 	      fb = eb !== d,
@@ -21715,15 +21915,15 @@
 	      jb = "none",
 	      kb = "pan-x",
 	      lb = "pan-y",
-	      mb = X();V.prototype = { set: function (a) {
+	      mb = X();V.prototype = { set: function set(a) {
 	      a == gb && (a = this.compute()), fb && this.manager.element.style && mb[a] && (this.manager.element.style[eb] = a), this.actions = a.toLowerCase().trim();
-	    }, update: function () {
+	    }, update: function update() {
 	      this.set(this.manager.options.touchAction);
-	    }, compute: function () {
+	    }, compute: function compute() {
 	      var a = [];return g(this.manager.recognizers, function (b) {
 	        k(b.options.enable, [b]) && (a = a.concat(b.getTouchAction()));
 	      }), W(a.join(" "));
-	    }, preventDefaults: function (a) {
+	    }, preventDefaults: function preventDefaults(a) {
 	      var b = a.srcEvent,
 	          c = a.offsetDirection;if (this.manager.session.prevented) return void b.preventDefault();var d = this.actions,
 	          e = p(d, jb) && !mb[jb],
@@ -21733,7 +21933,7 @@
 	            i = a.distance < 2,
 	            j = a.deltaTime < 250;if (h && i && j) return;
 	      }return g && f ? void 0 : e || f && c & Na || g && c & Oa ? this.preventSrc(b) : void 0;
-	    }, preventSrc: function (a) {
+	    }, preventSrc: function preventSrc(a) {
 	      this.manager.session.prevented = !0, a.preventDefault();
 	    } };var nb = 1,
 	      ob = 2,
@@ -21741,89 +21941,89 @@
 	      qb = 8,
 	      rb = qb,
 	      sb = 16,
-	      tb = 32;Y.prototype = { defaults: {}, set: function (a) {
+	      tb = 32;Y.prototype = { defaults: {}, set: function set(a) {
 	      return la(this.options, a), this.manager && this.manager.touchAction.update(), this;
-	    }, recognizeWith: function (a) {
+	    }, recognizeWith: function recognizeWith(a) {
 	      if (f(a, "recognizeWith", this)) return this;var b = this.simultaneous;return a = _(a, this), b[a.id] || (b[a.id] = a, a.recognizeWith(this)), this;
-	    }, dropRecognizeWith: function (a) {
+	    }, dropRecognizeWith: function dropRecognizeWith(a) {
 	      return f(a, "dropRecognizeWith", this) ? this : (a = _(a, this), delete this.simultaneous[a.id], this);
-	    }, requireFailure: function (a) {
+	    }, requireFailure: function requireFailure(a) {
 	      if (f(a, "requireFailure", this)) return this;var b = this.requireFail;return a = _(a, this), -1 === r(b, a) && (b.push(a), a.requireFailure(this)), this;
-	    }, dropRequireFailure: function (a) {
+	    }, dropRequireFailure: function dropRequireFailure(a) {
 	      if (f(a, "dropRequireFailure", this)) return this;a = _(a, this);var b = r(this.requireFail, a);return b > -1 && this.requireFail.splice(b, 1), this;
-	    }, hasRequireFailures: function () {
+	    }, hasRequireFailures: function hasRequireFailures() {
 	      return this.requireFail.length > 0;
-	    }, canRecognizeWith: function (a) {
+	    }, canRecognizeWith: function canRecognizeWith(a) {
 	      return !!this.simultaneous[a.id];
-	    }, emit: function (a) {
+	    }, emit: function emit(a) {
 	      function b(b) {
 	        c.manager.emit(b, a);
 	      }var c = this,
 	          d = this.state;qb > d && b(c.options.event + Z(d)), b(c.options.event), a.additionalEvent && b(a.additionalEvent), d >= qb && b(c.options.event + Z(d));
-	    }, tryEmit: function (a) {
+	    }, tryEmit: function tryEmit(a) {
 	      return this.canEmit() ? this.emit(a) : void (this.state = tb);
-	    }, canEmit: function () {
+	    }, canEmit: function canEmit() {
 	      for (var a = 0; a < this.requireFail.length;) {
 	        if (!(this.requireFail[a].state & (tb | nb))) return !1;a++;
 	      }return !0;
-	    }, recognize: function (a) {
+	    }, recognize: function recognize(a) {
 	      var b = la({}, a);return k(this.options.enable, [this, b]) ? (this.state & (rb | sb | tb) && (this.state = nb), this.state = this.process(b), void (this.state & (ob | pb | qb | sb) && this.tryEmit(b))) : (this.reset(), void (this.state = tb));
-	    }, process: function (a) {}, getTouchAction: function () {}, reset: function () {} }, i(aa, Y, { defaults: { pointers: 1 }, attrTest: function (a) {
+	    }, process: function process(a) {}, getTouchAction: function getTouchAction() {}, reset: function reset() {} }, i(aa, Y, { defaults: { pointers: 1 }, attrTest: function attrTest(a) {
 	      var b = this.options.pointers;return 0 === b || a.pointers.length === b;
-	    }, process: function (a) {
+	    }, process: function process(a) {
 	      var b = this.state,
 	          c = a.eventType,
 	          d = b & (ob | pb),
 	          e = this.attrTest(a);return d && (c & Ha || !e) ? b | sb : d || e ? c & Ga ? b | qb : b & ob ? b | pb : ob : tb;
-	    } }), i(ba, aa, { defaults: { event: "pan", threshold: 10, pointers: 1, direction: Pa }, getTouchAction: function () {
+	    } }), i(ba, aa, { defaults: { event: "pan", threshold: 10, pointers: 1, direction: Pa }, getTouchAction: function getTouchAction() {
 	      var a = this.options.direction,
 	          b = [];return a & Na && b.push(lb), a & Oa && b.push(kb), b;
-	    }, directionTest: function (a) {
+	    }, directionTest: function directionTest(a) {
 	      var b = this.options,
 	          c = !0,
 	          d = a.distance,
 	          e = a.direction,
 	          f = a.deltaX,
 	          g = a.deltaY;return e & b.direction || (b.direction & Na ? (e = 0 === f ? Ia : 0 > f ? Ja : Ka, c = f != this.pX, d = Math.abs(a.deltaX)) : (e = 0 === g ? Ia : 0 > g ? La : Ma, c = g != this.pY, d = Math.abs(a.deltaY))), a.direction = e, c && d > b.threshold && e & b.direction;
-	    }, attrTest: function (a) {
+	    }, attrTest: function attrTest(a) {
 	      return aa.prototype.attrTest.call(this, a) && (this.state & ob || !(this.state & ob) && this.directionTest(a));
-	    }, emit: function (a) {
+	    }, emit: function emit(a) {
 	      this.pX = a.deltaX, this.pY = a.deltaY;var b = $(a.direction);b && (a.additionalEvent = this.options.event + b), this._super.emit.call(this, a);
-	    } }), i(ca, aa, { defaults: { event: "pinch", threshold: 0, pointers: 2 }, getTouchAction: function () {
+	    } }), i(ca, aa, { defaults: { event: "pinch", threshold: 0, pointers: 2 }, getTouchAction: function getTouchAction() {
 	      return [jb];
-	    }, attrTest: function (a) {
+	    }, attrTest: function attrTest(a) {
 	      return this._super.attrTest.call(this, a) && (Math.abs(a.scale - 1) > this.options.threshold || this.state & ob);
-	    }, emit: function (a) {
+	    }, emit: function emit(a) {
 	      if (1 !== a.scale) {
 	        var b = a.scale < 1 ? "in" : "out";a.additionalEvent = this.options.event + b;
 	      }this._super.emit.call(this, a);
-	    } }), i(da, Y, { defaults: { event: "press", pointers: 1, time: 251, threshold: 9 }, getTouchAction: function () {
+	    } }), i(da, Y, { defaults: { event: "press", pointers: 1, time: 251, threshold: 9 }, getTouchAction: function getTouchAction() {
 	      return [hb];
-	    }, process: function (a) {
+	    }, process: function process(a) {
 	      var b = this.options,
 	          c = a.pointers.length === b.pointers,
 	          d = a.distance < b.threshold,
 	          f = a.deltaTime > b.time;if (this._input = a, !d || !c || a.eventType & (Ga | Ha) && !f) this.reset();else if (a.eventType & Ea) this.reset(), this._timer = e(function () {
 	        this.state = rb, this.tryEmit();
 	      }, b.time, this);else if (a.eventType & Ga) return rb;return tb;
-	    }, reset: function () {
+	    }, reset: function reset() {
 	      clearTimeout(this._timer);
-	    }, emit: function (a) {
+	    }, emit: function emit(a) {
 	      this.state === rb && (a && a.eventType & Ga ? this.manager.emit(this.options.event + "up", a) : (this._input.timeStamp = ra(), this.manager.emit(this.options.event, this._input)));
-	    } }), i(ea, aa, { defaults: { event: "rotate", threshold: 0, pointers: 2 }, getTouchAction: function () {
+	    } }), i(ea, aa, { defaults: { event: "rotate", threshold: 0, pointers: 2 }, getTouchAction: function getTouchAction() {
 	      return [jb];
-	    }, attrTest: function (a) {
+	    }, attrTest: function attrTest(a) {
 	      return this._super.attrTest.call(this, a) && (Math.abs(a.rotation) > this.options.threshold || this.state & ob);
-	    } }), i(fa, aa, { defaults: { event: "swipe", threshold: 10, velocity: .3, direction: Na | Oa, pointers: 1 }, getTouchAction: function () {
+	    } }), i(fa, aa, { defaults: { event: "swipe", threshold: 10, velocity: .3, direction: Na | Oa, pointers: 1 }, getTouchAction: function getTouchAction() {
 	      return ba.prototype.getTouchAction.call(this);
-	    }, attrTest: function (a) {
+	    }, attrTest: function attrTest(a) {
 	      var b,
 	          c = this.options.direction;return c & (Na | Oa) ? b = a.overallVelocity : c & Na ? b = a.overallVelocityX : c & Oa && (b = a.overallVelocityY), this._super.attrTest.call(this, a) && c & a.offsetDirection && a.distance > this.options.threshold && a.maxPointers == this.options.pointers && qa(b) > this.options.velocity && a.eventType & Ga;
-	    }, emit: function (a) {
+	    }, emit: function emit(a) {
 	      var b = $(a.offsetDirection);b && this.manager.emit(this.options.event + b, a), this.manager.emit(this.options.event, a);
-	    } }), i(ga, Y, { defaults: { event: "tap", pointers: 1, taps: 1, interval: 300, time: 250, threshold: 9, posThreshold: 10 }, getTouchAction: function () {
+	    } }), i(ga, Y, { defaults: { event: "tap", pointers: 1, taps: 1, interval: 300, time: 250, threshold: 9, posThreshold: 10 }, getTouchAction: function getTouchAction() {
 	      return [ib];
-	    }, process: function (a) {
+	    }, process: function process(a) {
 	      var b = this.options,
 	          c = a.pointers.length === b.pointers,
 	          d = a.distance < b.threshold,
@@ -21833,53 +22033,59 @@
 	          this.state = rb, this.tryEmit();
 	        }, b.interval, this), ob) : rb;
 	      }return tb;
-	    }, failTimeout: function () {
+	    }, failTimeout: function failTimeout() {
 	      return this._timer = e(function () {
 	        this.state = tb;
 	      }, this.options.interval, this), tb;
-	    }, reset: function () {
+	    }, reset: function reset() {
 	      clearTimeout(this._timer);
-	    }, emit: function () {
+	    }, emit: function emit() {
 	      this.state == rb && (this._input.tapCount = this.count, this.manager.emit(this.options.event, this._input));
 	    } }), ha.VERSION = "2.0.8", ha.defaults = { domEvents: !1, touchAction: gb, enable: !0, inputTarget: null, inputClass: null, preset: [[ea, { enable: !1 }], [ca, { enable: !1 }, ["rotate"]], [fa, { direction: Na }], [ba, { direction: Na }, ["swipe"]], [ga], [ga, { event: "doubletap", taps: 2 }, ["tap"]], [da]], cssProps: { userSelect: "none", touchSelect: "none", touchCallout: "none", contentZooming: "none", userDrag: "none", tapHighlightColor: "rgba(0,0,0,0)" } };var ub = 1,
-	      vb = 2;ia.prototype = { set: function (a) {
+	      vb = 2;ia.prototype = { set: function set(a) {
 	      return la(this.options, a), a.touchAction && this.touchAction.update(), a.inputTarget && (this.input.destroy(), this.input.target = a.inputTarget, this.input.init()), this;
-	    }, stop: function (a) {
+	    }, stop: function stop(a) {
 	      this.session.stopped = a ? vb : ub;
-	    }, recognize: function (a) {
+	    }, recognize: function recognize(a) {
 	      var b = this.session;if (!b.stopped) {
 	        this.touchAction.preventDefaults(a);var c,
 	            d = this.recognizers,
-	            e = b.curRecognizer;(!e || e && e.state & rb) && (e = b.curRecognizer = null);for (var f = 0; f < d.length;) c = d[f], b.stopped === vb || e && c != e && !c.canRecognizeWith(e) ? c.reset() : c.recognize(a), !e && c.state & (ob | pb | qb) && (e = b.curRecognizer = c), f++;
+	            e = b.curRecognizer;(!e || e && e.state & rb) && (e = b.curRecognizer = null);for (var f = 0; f < d.length;) {
+	          c = d[f], b.stopped === vb || e && c != e && !c.canRecognizeWith(e) ? c.reset() : c.recognize(a), !e && c.state & (ob | pb | qb) && (e = b.curRecognizer = c), f++;
+	        }
 	      }
-	    }, get: function (a) {
-	      if (a instanceof Y) return a;for (var b = this.recognizers, c = 0; c < b.length; c++) if (b[c].options.event == a) return b[c];return null;
-	    }, add: function (a) {
+	    }, get: function get(a) {
+	      if (a instanceof Y) return a;for (var b = this.recognizers, c = 0; c < b.length; c++) {
+	        if (b[c].options.event == a) return b[c];
+	      }return null;
+	    }, add: function add(a) {
 	      if (f(a, "add", this)) return this;var b = this.get(a.options.event);return b && this.remove(b), this.recognizers.push(a), a.manager = this, this.touchAction.update(), a;
-	    }, remove: function (a) {
+	    }, remove: function remove(a) {
 	      if (f(a, "remove", this)) return this;if (a = this.get(a)) {
 	        var b = this.recognizers,
 	            c = r(b, a);-1 !== c && (b.splice(c, 1), this.touchAction.update());
 	      }return this;
-	    }, on: function (a, b) {
+	    }, on: function on(a, b) {
 	      if (a !== d && b !== d) {
 	        var c = this.handlers;return g(q(a), function (a) {
 	          c[a] = c[a] || [], c[a].push(b);
 	        }), this;
 	      }
-	    }, off: function (a, b) {
+	    }, off: function off(a, b) {
 	      if (a !== d) {
 	        var c = this.handlers;return g(q(a), function (a) {
 	          b ? c[a] && c[a].splice(r(c[a], b), 1) : delete c[a];
 	        }), this;
 	      }
-	    }, emit: function (a, b) {
+	    }, emit: function emit(a, b) {
 	      this.options.domEvents && ka(a, b);var c = this.handlers[a] && this.handlers[a].slice();if (c && c.length) {
 	        b.type = a, b.preventDefault = function () {
 	          b.srcEvent.preventDefault();
-	        };for (var d = 0; d < c.length;) c[d](b), d++;
+	        };for (var d = 0; d < c.length;) {
+	          c[d](b), d++;
+	        }
 	      }
-	    }, destroy: function () {
+	    }, destroy: function destroy() {
 	      this.element && ja(this, !1), this.handlers = {}, this.session = {}, this.input.destroy(), this.element = null;
 	    } }, la(ha, { INPUT_START: Ea, INPUT_MOVE: Fa, INPUT_END: Ga, INPUT_CANCEL: Ha, STATE_POSSIBLE: nb, STATE_BEGAN: ob, STATE_CHANGED: pb, STATE_ENDED: qb, STATE_RECOGNIZED: rb, STATE_CANCELLED: sb, STATE_FAILED: tb, DIRECTION_NONE: Ia, DIRECTION_LEFT: Ja, DIRECTION_RIGHT: Ka, DIRECTION_UP: La, DIRECTION_DOWN: Ma, DIRECTION_HORIZONTAL: Na, DIRECTION_VERTICAL: Oa, DIRECTION_ALL: Pa, Manager: ia, Input: x, TouchAction: V, TouchInput: P, MouseInput: L, PointerEventInput: M, TouchMouseInput: R, SingleTouchInput: N, Recognizer: Y, AttrRecognizer: aa, Tap: ga, Pan: ba, Swipe: fa, Pinch: ca, Rotate: ea, Press: da, on: m, off: n, each: g, merge: ta, extend: sa, assign: la, inherit: i, bindFn: j, prefixed: u });var wb = "undefined" != typeof a ? a : "undefined" != typeof self ? self : {};wb.Hammer = ha,  true ? !(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
 	    return ha;
@@ -21888,8 +22094,10 @@
 	//# sourceMappingURL=hammer.min.js.map
 
 /***/ },
-/* 175 */
+/* 182 */
 /***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
 
 	function int(v) {
 	    return v | 0;
@@ -22038,7 +22246,7 @@
 	 */
 	function Cache() {}
 	Cache.prototype = {
-	    get: function (key, missed) {
+	    get: function get(key, missed) {
 	        if (typeof this[key] === 'undefined') {
 	            this[key] = missed();
 	        }
@@ -22238,13 +22446,13 @@
 	}
 
 	Moon.prototype = {
-	    lastDay: function (y, m) {
+	    lastDay: function lastDay(y, m) {
 	        var nextDay = new Date(y, m + 1);
 	        var rv = new Date();
 	        rv.setTime(nextDay.getTime() - 24 * 60 * 60 * 1000);
 	        return rv;
 	    },
-	    fullmoonOf: function (date) {
+	    fullmoonOf: function fullmoonOf(date) {
 	        var rv = null;
 	        this.fullmoons.forEach(function (fullmoon) {
 	            if (isSameDay(date, fullmoon)) {
@@ -22253,7 +22461,7 @@
 	        });
 	        return rv;
 	    },
-	    newmoonOf: function (date) {
+	    newmoonOf: function newmoonOf(date) {
 	        var rv = null;
 	        this.newmoons.forEach(function (newmoon) {
 	            if (isSameDay(date, newmoon)) {
@@ -22280,7 +22488,7 @@
 	    this.day = day;
 	}
 	OldDate.prototype = {
-	    toString: function () {
+	    toString: function toString() {
 	        var s = "";
 	        if (this.leap) {
 	            s += "閏";
@@ -22851,41 +23059,6 @@
 	        Moon: Moon
 	    };
 	}
-
-/***/ },
-/* 176 */
-/***/ function(module, exports) {
-
-	function parseHash(url) {
-	    var parts = url.split('#');
-	    if (parts.length < 2) {
-	        return null;
-	    }
-	    return decodeURIComponent(parts[1]);
-	}
-	function addClass(e, cls) {
-	    var a = e.getAttribute("class");
-	    var classes = a ? a.split(' ') : [];
-	    classes.push(cls);
-	    e.setAttribute("class", classes.join(' '));
-	}
-	function removeClass(e, cls) {
-	    var newClasses = [];
-	    var a = e.getAttribute("class");
-	    var classes = a ? a.split(' ') : [];
-	    classes.forEach(function (c) {
-	        if (c != cls) {
-	            newClasses.push(c);
-	        }
-	    });
-	    e.setAttribute("class", newClasses.join(' '));
-	}
-
-	module.exports = {
-	    parseHash: parseHash,
-	    addClass: addClass,
-	    removeClass: removeClass
-	};
 
 /***/ }
 /******/ ]);

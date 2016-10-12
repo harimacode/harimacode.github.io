@@ -44,30 +44,36 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Hammer = __webpack_require__(174);
+	'use strict';
+
+	var _Rekichu = __webpack_require__(174);
+
+	var _Rekichu2 = _interopRequireDefault(_Rekichu);
+
+	var _Button = __webpack_require__(172);
+
+	var _Button2 = _interopRequireDefault(_Button);
+
+	var _OldDateMonth = __webpack_require__(173);
+
+	var _OldDateMonth2 = _interopRequireDefault(_OldDateMonth);
+
+	var _Explanations = __webpack_require__(177);
+
+	var _Explanations2 = _interopRequireDefault(_Explanations);
+
+	var _CopyrightBox = __webpack_require__(180);
+
+	var _CopyrightBox2 = _interopRequireDefault(_CopyrightBox);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Hammer = __webpack_require__(181);
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(33);
-	var oc = __webpack_require__(175);
+	var oc = __webpack_require__(182);
 	var common = __webpack_require__(176);
-	var Button = __webpack_require__(172);
-	var OldDateMonth = __webpack_require__(173);
-	var Explanations = __webpack_require__(177);
 
-	function renderOldDateMonth(props) {
-	    if (!props.date) {
-	        props.date = new Date();
-	    }
-	    if (!props.subtitle) {
-	        props.subtitle = "旧暦 0月0日";
-	    }
-	    return ReactDOM.render(React.createElement(OldDateMonth, { type: 'date',
-	        date: props.date,
-	        subtitle: props.subtitle,
-	        onPrevClick: prev,
-	        onCurrentClick: today,
-	        onNextClick: next }), document.getElementById("old-date-month"));
-	}
-	renderOldDateMonth({});
 
 	var kExplanations = [{
 	    name: "六輝",
@@ -77,7 +83,13 @@
 	    name: "干支",
 	    description: "木の幹にあたる”十干”と枝にあたる”十二支”を合わせて<strong>状態</strong>を表すものです。",
 	    items: [["甲", "きのえ", "草木の芽生え、鱗芽のかいわれの象意"], ["乙", "きのと", "陽気のまだ伸びない、かがまっているところ"], ["丙", "ひのえ", "陽気の発揚"], ["丁", "ひのと", "陽気の充溢"], ["戊", "つちのえ", "“茂”に通じ、陽気による分化繁栄"], ["己", "つちのと", "紀に通じ、分散を防ぐ統制作用"], ["庚", "かのえ", "結実、形成、陰化の段階"], ["辛", "かのと", "陰による統制の強化"], ["壬", "みずのえ", "“妊”に通じ、陽気を下に姙む意"], ["癸", "みずのと", "“揆”に同じく生命のない残物を清算して地ならしを行い、新たな生長を行う待機の状態"]],
+	    matcherForItems: function matcherForItems(s) {
+	        return s.charAt(0);
+	    },
 	    items2: [["子", "ね", "“孳”で、陽気が色々に発現しようとする動き"], ["丑", "うし", "“紐”で、生命エネルギーの様々な結合"], ["寅", "とら", "“演”で、形をとっての発生"], ["卯", "う", "同音“冒”に通じ、開発の意"], ["辰", "たつ", "“震”、同音“申”に同じ、生の活動"], ["巳", "み", "“已”に通じ、陽盛の極、漸く陰に移ろうとする所"], ["午", "うま", "“忤(さからう)”に通じ、上昇する陰と下退する陽との抵触"], ["未", "ひつじ", "“昧”で、陰気の支配"], ["申", "さる", "陰気の支配"], ["酉", "とり", "酒熟して気の漏れる象。陰気の熟する所"], ["戌", "いぬ", "同音“恤”であり、“滅”である。統一退蔵。"], ["亥", "い", "“核”で、生命の完全な収蔵含蓄"]],
+	    matcherForItems2: function matcherForItems2(s) {
+	        return s.charAt(1);
+	    },
 	    cite: "(表は <a href='https://ja.wikipedia.org/wiki/%E5%B9%B2%E6%94%AF#.E5.8D.81.E5.B9.B2'>干支 - Wikipedia</a> より引用)"
 	}, {
 	    name: "九星",
@@ -108,11 +120,6 @@
 	function set(id, value) {
 	    document.getElementById(id).innerHTML = value;
 	}
-	function sets(clazz, value) {
-	    Array.prototype.forEach.call(document.querySelectorAll("." + clazz), function (e) {
-	        e.innerHTML = value;
-	    });
-	}
 	function update() {
 	    // 月表示の更新
 	    var month = date.getMonth() + 1;
@@ -122,22 +129,26 @@
 	    var month = date.getMonth() + 1; // 月は 0 始まり
 	    var jd = oc.juliusDate(date);
 	    var old = oc.oldCalendar(jd);
-	    renderOldDateMonth({
+	    ReactDOM.render(React.createElement(_OldDateMonth2.default, { type: 'date',
 	        date: date,
-	        subtitle: '旧暦 ' + old
-	    });
+	        subtitle: '旧暦 ' + old,
+	        onPrevClick: prev,
+	        onCurrentClick: today,
+	        onNextClick: next }), document.getElementById("old-date-month"));
+
 	    var newRokki = oc.rokki(old);
-	    sets('rokki', newRokki);
 	    var newEto = oc.eto(jd);
-	    sets('eto', newEto);
 	    var newKyusei = oc.kyusei(jd);
-	    sets('kyusei', newKyusei);
 	    var newChoku = oc.choku(jd);
-	    sets('choku', newChoku);
 	    var newShuku = oc.shuku(old);
-	    sets('shuku', newShuku);
 	    var newNattin = oc.nattin(jd);
-	    sets('nattin', newNattin);
+	    var items = [['六輝', newRokki], ['干支', newEto], ['九星', newKyusei], ['直', newChoku], ['宿', newShuku], ['納音', newNattin]];
+	    var onClick = function onClick(e, name) {
+	        jumpToHash(decodeURIComponent(name));
+	    };
+	    ReactDOM.render(React.createElement(_Rekichu2.default, { data: items, onClick: onClick }), document.getElementById("rekichu"));
+	    ReactDOM.render(React.createElement(_Explanations2.default, { data: kExplanations, marks: items }), document.getElementById("explanation"));
+
 	    var tags = [];
 	    oc.tagsForDate(date).forEach(function (tag) {
 	        var tagText = tag[1];
@@ -171,27 +182,6 @@
 	        tags.push('<span class="tag ' + tag[0] + '">' + tagText + '</span>');
 	    });
 	    set('tags', tags.join(" ･ "));
-
-	    // 今解説に表がある項目について、マーカー表示します。
-	    markItems([["六輝", newRokki], // 六輝
-	    ["干支", newEto.charAt(0)], ["干支", newEto.charAt(1)], // 十干、十二支
-	    ["九星", newKyusei], // 九星
-	    ["直", newChoku], ["宿", newShuku], ["納音", newNattin]]); // 直、宿、納音
-	}
-
-	var marked;
-	function markItems(toBeMarked) {
-	    if (marked) {
-	        marked.forEach(function (item) {
-	            common.removeClass(item, "marked");
-	        });
-	    }
-	    marked = [];
-	    toBeMarked.forEach(function (item) {
-	        var e = document.getElementById(item.join("_"));
-	        common.addClass(e, "marked");
-	        marked.push(e);
-	    });
 	}
 
 	var date;
@@ -231,14 +221,14 @@
 	    this.mFps = 60;
 	}
 	ScrollAnimation.prototype = {
-	    start: function () {
+	    start: function start() {
 	        this.mStart = new Date().getTime();
 	        var that = this;
 	        setTimeout(function () {
 	            that.update();
 	        }, 1000 / this.mFps);
 	    },
-	    update: function () {
+	    update: function update() {
 	        var now = new Date().getTime();
 	        var t = (now - this.mStart) / this.mDuration;
 	        if (t > 1) {
@@ -257,7 +247,7 @@
 	    },
 	    // https://gist.github.com/gre/1650294
 	    // acceleration until halfway, then deceleration
-	    easeInOutQuad: function (t) {
+	    easeInOutQuad: function easeInOutQuad(t) {
 	        return t < .5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
 	    }
 	};
@@ -270,7 +260,7 @@
 	    if (newBox) {
 	        common.addClass(newBox, "marked");
 	    }
-	    var tbHeight = document.getElementById("toolbar").getBoundingClientRect().height;
+	    var tbHeight = document.querySelector(".rekichu__toolbar").getBoundingClientRect().height;
 	    var newY = newBox.getBoundingClientRect().top + window.pageYOffset;
 
 	    new ScrollAnimation(0.25, newY - tbHeight * 1.25).start();
@@ -291,16 +281,6 @@
 
 	    document.getElementById("today").addEventListener("click", today, false);
 
-	    Array.prototype.forEach.call(document.querySelectorAll("a.box"), function (aBox) {
-	        aBox.addEventListener("click", function (e) {
-	            var hash = common.parseHash(aBox.getAttribute("href"));
-	            if (hash) {
-	                e.preventDefault();
-	                jumpToHash(hash);
-	            }
-	        }, false);
-	    });
-
 	    // runTests();
 	}, false);
 	window.addEventListener("hashchange", function (e) {
@@ -313,14 +293,6 @@
 	            // マーク
 	            jumpToHash(hash);
 	        }
-	    }
-	}, false);
-	window.addEventListener("scroll", function (e) {
-	    var tb = document.getElementById("toolbar");
-	    var tagsTop = document.getElementById("tags").getBoundingClientRect().top;
-	    common.removeClass(tb, "visible");
-	    if (tagsTop < 0) {
-	        common.addClass(tb, "visible");
 	    }
 	}, false);
 
@@ -342,16 +314,8 @@
 	    }
 	});
 
-	// ReactDOM.render(
-	//     <Button title="&laquo;" onClick={prev}/>,
-	//     document.getElementById("prev")
-	// );
-	// ReactDOM.render(
-	//     <Button title="&raquo;" onClick={next} />,
-	//     document.getElementById("next")
-	// );
-	ReactDOM.render(React.createElement(Explanations, { data: kExplanations }), document.getElementById("explanation"));
-	ReactDOM.render(React.createElement(Button, { title: '△', onClick: gotoTop }), document.getElementById("top-container"));
+	ReactDOM.render(React.createElement(_Button2.default, { title: '△', onClick: gotoTop }), document.getElementById("top-container"));
+	ReactDOM.render(React.createElement(_CopyrightBox2.default, null), document.getElementById("copyright-box"));
 
 /***/ },
 /* 1 */
@@ -21389,114 +21353,765 @@
 /* 172 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var React = __webpack_require__(1);
+	"use strict";
 
-	module.exports = React.createClass({
-	    displayName: "exports",
-
-	    handleClick: function (e) {
-	        this.props.onClick(e);
-	    },
-	    render: function () {
-	        var cls = this.props.className + " button";
-	        return React.createElement(
-	            "a",
-	            { href: "#",
-	                className: cls,
-	                onClick: this.handleClick },
-	            this.props.title
-	        );
-	    }
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
 	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Button = function (_React$Component) {
+	    _inherits(Button, _React$Component);
+
+	    function Button() {
+	        _classCallCheck(this, Button);
+
+	        return _possibleConstructorReturn(this, (Button.__proto__ || Object.getPrototypeOf(Button)).apply(this, arguments));
+	    }
+
+	    _createClass(Button, [{
+	        key: "handleClick",
+	        value: function handleClick(e) {
+	            this.props.onClick(e);
+	        }
+	    }, {
+	        key: "render",
+	        value: function render() {
+	            var cls = this.props.className + " button";
+	            return _react2.default.createElement(
+	                "a",
+	                { href: "#",
+	                    className: cls,
+	                    onClick: this.handleClick.bind(this) },
+	                this.props.title
+	            );
+	        }
+	    }]);
+
+	    return Button;
+	}(_react2.default.Component);
+
+	exports.default = Button;
 
 /***/ },
 /* 173 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var React = __webpack_require__(1);
-	var ReactDOM = __webpack_require__(33);
-	var Button = __webpack_require__(172);
+	"use strict";
 
-	module.exports = React.createClass({
-	    displayName: "exports",
-
-	    isYearMonth: function () {
-	        return this.props.type === "month";
-	    },
-	    dayOfWeek: function dayOfWeek(dow) {
-	        return "日月火水木金土".charAt(dow);
-	    },
-	    render: function () {
-	        var year = this.props.date.getFullYear();
-	        var month = this.props.date.getMonth() + 1;
-	        var date = this.props.date.getDate();
-	        var day = this.props.date.getDay();
-	        var firstLine = this.isYearMonth() ? React.createElement(
-	            "span",
-	            { className: "old-date-month__current", id: "date", onClick: this.props.onCurrentClick },
-	            React.createElement(
-	                "span",
-	                { className: "old-date-month__keyNumber" },
-	                year
-	            ),
-	            "年",
-	            React.createElement(
-	                "span",
-	                { className: "old-date-month__keyNumber" },
-	                month
-	            ),
-	            "月"
-	        ) : React.createElement(
-	            "span",
-	            { className: "old-date-month__current", id: "date", onClick: this.props.onCurrentClick },
-	            React.createElement(
-	                "span",
-	                { className: "old-date-month__keyNumber" },
-	                month
-	            ),
-	            "月",
-	            React.createElement(
-	                "span",
-	                { className: "old-date-month__keyNumber" },
-	                date
-	            ),
-	            "日",
-	            React.createElement(
-	                "span",
-	                { className: "old-date-month--dayOfWeek" + day },
-	                "(",
-	                this.dayOfWeek(day),
-	                ")"
-	            )
-	        );
-	        return React.createElement(
-	            "div",
-	            { className: "old-date-month" },
-	            React.createElement(
-	                "div",
-	                { className: "old-date-month__caption" },
-	                React.createElement(Button, { className: "old-date-month__prev", title: "«", onClick: this.props.onPrevClick }),
-	                firstLine,
-	                React.createElement(Button, { className: "old-date-month__next", title: "»", onClick: this.props.onNextClick })
-	            ),
-	            React.createElement(
-	                "p",
-	                { className: "old-date-month__old" },
-	                React.createElement(
-	                    "span",
-	                    { onClick: this.props.onCurrentClick },
-	                    this.props.subtitle
-	                )
-	            )
-	        );
-	    }
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
 	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(33);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	var _Button = __webpack_require__(172);
+
+	var _Button2 = _interopRequireDefault(_Button);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var OldDateMonth = function (_React$Component) {
+	    _inherits(OldDateMonth, _React$Component);
+
+	    function OldDateMonth() {
+	        _classCallCheck(this, OldDateMonth);
+
+	        return _possibleConstructorReturn(this, (OldDateMonth.__proto__ || Object.getPrototypeOf(OldDateMonth)).apply(this, arguments));
+	    }
+
+	    _createClass(OldDateMonth, [{
+	        key: "isYearMonth",
+	        value: function isYearMonth() {
+	            return this.props.type === "month";
+	        }
+	    }, {
+	        key: "dayOfWeek",
+	        value: function dayOfWeek(dow) {
+	            return "日月火水木金土".charAt(dow);
+	        }
+	    }, {
+	        key: "render",
+	        value: function render() {
+	            var year = this.props.date.getFullYear();
+	            var month = this.props.date.getMonth() + 1;
+	            var date = this.props.date.getDate();
+	            var day = this.props.date.getDay();
+	            var firstLine = this.isYearMonth() ? _react2.default.createElement(
+	                "span",
+	                { className: "old-date-month__current", id: "date", onClick: this.props.onCurrentClick },
+	                _react2.default.createElement(
+	                    "span",
+	                    { className: "old-date-month__keyNumber" },
+	                    year
+	                ),
+	                "年",
+	                _react2.default.createElement(
+	                    "span",
+	                    { className: "old-date-month__keyNumber" },
+	                    month
+	                ),
+	                "月"
+	            ) : _react2.default.createElement(
+	                "span",
+	                { className: "old-date-month__current", id: "date", onClick: this.props.onCurrentClick },
+	                _react2.default.createElement(
+	                    "span",
+	                    { className: "old-date-month__keyNumber" },
+	                    month
+	                ),
+	                "月",
+	                _react2.default.createElement(
+	                    "span",
+	                    { className: "old-date-month__keyNumber" },
+	                    date
+	                ),
+	                "日",
+	                _react2.default.createElement(
+	                    "span",
+	                    { className: "old-date-month--dayOfWeek" + day },
+	                    "(",
+	                    this.dayOfWeek(day),
+	                    ")"
+	                )
+	            );
+	            return _react2.default.createElement(
+	                "div",
+	                { className: "old-date-month" },
+	                _react2.default.createElement(
+	                    "div",
+	                    { className: "old-date-month__caption" },
+	                    _react2.default.createElement(_Button2.default, { className: "old-date-month__prev", title: "«", onClick: this.props.onPrevClick }),
+	                    firstLine,
+	                    _react2.default.createElement(_Button2.default, { className: "old-date-month__next", title: "»", onClick: this.props.onNextClick })
+	                ),
+	                _react2.default.createElement(
+	                    "p",
+	                    { className: "old-date-month__old" },
+	                    _react2.default.createElement(
+	                        "span",
+	                        { onClick: this.props.onCurrentClick },
+	                        this.props.subtitle
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+
+	    return OldDateMonth;
+	}(_react2.default.Component);
+
+	exports.default = OldDateMonth;
 
 /***/ },
 /* 174 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_RESULT__;/*! Hammer.JS - v2.0.8 - 2016-04-23
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _RekichuItem = __webpack_require__(175);
+
+	var _RekichuItem2 = _interopRequireDefault(_RekichuItem);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var common = __webpack_require__(176);
+
+	var Rekichu = function (_React$Component) {
+	    _inherits(Rekichu, _React$Component);
+
+	    function Rekichu() {
+	        _classCallCheck(this, Rekichu);
+
+	        var _this = _possibleConstructorReturn(this, (Rekichu.__proto__ || Object.getPrototypeOf(Rekichu)).call(this));
+
+	        _this.handleScroll = _this.handleScroll.bind(_this);
+	        return _this;
+	    }
+
+	    _createClass(Rekichu, [{
+	        key: "handleScroll",
+	        value: function handleScroll(e) {
+	            var tb = document.querySelector(".rekichu__toolbar");
+	            var gridBottom = document.querySelector(".rekichu__grid").getBoundingClientRect().bottom;
+	            common.removeClass(tb, "rekichu--visible");
+	            if (gridBottom < 0) {
+	                common.addClass(tb, "rekichu--visible");
+	            }
+	        }
+	    }, {
+	        key: "componentDidMount",
+	        value: function componentDidMount() {
+	            window.addEventListener("scroll", this.handleScroll, false);
+	        }
+	    }, {
+	        key: "componentWillUnmount",
+	        value: function componentWillUnmount() {
+	            window.removeEventListener("scroll", this.handleScroll, false);
+	        }
+	    }, {
+	        key: "render",
+	        value: function render() {
+	            var elts = [];
+	            var _iteratorNormalCompletion = true;
+	            var _didIteratorError = false;
+	            var _iteratorError = undefined;
+
+	            try {
+	                for (var _iterator = this.props.data[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+	                    var item = _step.value;
+
+	                    elts.push(_react2.default.createElement(_RekichuItem2.default, { name: item[0],
+	                        value: item[1],
+	                        onClick: this.props.onClick }));
+	                }
+	            } catch (err) {
+	                _didIteratorError = true;
+	                _iteratorError = err;
+	            } finally {
+	                try {
+	                    if (!_iteratorNormalCompletion && _iterator.return) {
+	                        _iterator.return();
+	                    }
+	                } finally {
+	                    if (_didIteratorError) {
+	                        throw _iteratorError;
+	                    }
+	                }
+	            }
+
+	            return _react2.default.createElement(
+	                "div",
+	                { className: "rekichu" },
+	                _react2.default.createElement(
+	                    "div",
+	                    { className: "rekichu__toolbar" },
+	                    elts
+	                ),
+	                _react2.default.createElement(
+	                    "div",
+	                    { className: "rekichu__grid" },
+	                    elts
+	                )
+	            );
+	        }
+	    }]);
+
+	    return Rekichu;
+	}(_react2.default.Component);
+
+	exports.default = Rekichu;
+
+/***/ },
+/* 175 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var RekichuItem = function (_React$Component) {
+	    _inherits(RekichuItem, _React$Component);
+
+	    function RekichuItem() {
+	        _classCallCheck(this, RekichuItem);
+
+	        return _possibleConstructorReturn(this, (RekichuItem.__proto__ || Object.getPrototypeOf(RekichuItem)).apply(this, arguments));
+	    }
+
+	    _createClass(RekichuItem, [{
+	        key: "handleClick",
+	        value: function handleClick(e) {
+	            this.props.onClick(e, this.props.name);
+	        }
+	    }, {
+	        key: "render",
+	        value: function render() {
+	            return _react2.default.createElement(
+	                "div",
+	                { className: "rekichu__item", onClick: this.handleClick.bind(this) },
+	                _react2.default.createElement(
+	                    "div",
+	                    { className: "rekichu__title" },
+	                    this.props.name
+	                ),
+	                _react2.default.createElement(
+	                    "div",
+	                    { className: "rekichu__content" },
+	                    this.props.value
+	                )
+	            );
+	        }
+	    }]);
+
+	    return RekichuItem;
+	}(_react2.default.Component);
+
+	exports.default = RekichuItem;
+
+/***/ },
+/* 176 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	function parseHash(url) {
+	    var parts = url.split('#');
+	    if (parts.length < 2) {
+	        return null;
+	    }
+	    return decodeURIComponent(parts[1]);
+	}
+	function addClass(e, cls) {
+	    var a = e.getAttribute("class");
+	    var classes = a ? a.split(' ') : [];
+	    classes.push(cls);
+	    e.setAttribute("class", classes.join(' '));
+	}
+	function removeClass(e, cls) {
+	    var newClasses = [];
+	    var a = e.getAttribute("class");
+	    var classes = a ? a.split(' ') : [];
+	    classes.forEach(function (c) {
+	        if (c != cls) {
+	            newClasses.push(c);
+	        }
+	    });
+	    e.setAttribute("class", newClasses.join(' '));
+	}
+
+	module.exports = {
+	    parseHash: parseHash,
+	    addClass: addClass,
+	    removeClass: removeClass
+	};
+
+/***/ },
+/* 177 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(33);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	var _Explanation = __webpack_require__(178);
+
+	var _Explanation2 = _interopRequireDefault(_Explanation);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Explanations = function (_React$Component) {
+	    _inherits(Explanations, _React$Component);
+
+	    function Explanations() {
+	        _classCallCheck(this, Explanations);
+
+	        return _possibleConstructorReturn(this, (Explanations.__proto__ || Object.getPrototypeOf(Explanations)).apply(this, arguments));
+	    }
+
+	    _createClass(Explanations, [{
+	        key: "render",
+	        value: function render() {
+	            var elts = [];
+	            var _iteratorNormalCompletion = true;
+	            var _didIteratorError = false;
+	            var _iteratorError = undefined;
+
+	            try {
+	                for (var _iterator = this.props.data[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+	                    var item = _step.value;
+
+	                    var index = elts.length;
+	                    if (index) {
+	                        elts.push(_react2.default.createElement("hr", { key: "separator" + index, className: "explanations__separator" }));
+	                    }
+	                    elts.push(_react2.default.createElement(_Explanation2.default, { key: "explanation" + index,
+	                        name: item.name,
+	                        description: item.description,
+	                        items: item.items,
+	                        matcherForItems: item.matcherForItems,
+	                        items2: item.items2,
+	                        matcherForItems2: item.matcherForItems2,
+	                        marks: this.props.marks,
+	                        cite: item.cite }));
+	                }
+	            } catch (err) {
+	                _didIteratorError = true;
+	                _iteratorError = err;
+	            } finally {
+	                try {
+	                    if (!_iteratorNormalCompletion && _iterator.return) {
+	                        _iterator.return();
+	                    }
+	                } finally {
+	                    if (_didIteratorError) {
+	                        throw _iteratorError;
+	                    }
+	                }
+	            }
+
+	            return _react2.default.createElement(
+	                "div",
+	                { className: "explanations" },
+	                elts
+	            );
+	        }
+	    }]);
+
+	    return Explanations;
+	}(_react2.default.Component);
+
+	exports.default = Explanations;
+
+/***/ },
+/* 178 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(33);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	var _ExplanationTable = __webpack_require__(179);
+
+	var _ExplanationTable2 = _interopRequireDefault(_ExplanationTable);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Explanation = function (_React$Component) {
+	    _inherits(Explanation, _React$Component);
+
+	    function Explanation() {
+	        _classCallCheck(this, Explanation);
+
+	        return _possibleConstructorReturn(this, (Explanation.__proto__ || Object.getPrototypeOf(Explanation)).apply(this, arguments));
+	    }
+
+	    _createClass(Explanation, [{
+	        key: "render",
+	        value: function render() {
+	            var name = this.props.name;
+	            var items2 = this.props.items2 ? _react2.default.createElement(_ExplanationTable2.default, { name: name,
+	                items: this.props.items2,
+	                matcher: this.props.matcherForItems2,
+	                marks: this.props.marks }) : null;
+	            var cite = this.props.cite ? _react2.default.createElement(
+	                "p",
+	                null,
+	                _react2.default.createElement("cite", { dangerouslySetInnerHTML: { __html: this.props.cite } })
+	            ) : null;
+	            return _react2.default.createElement(
+	                "div",
+	                null,
+	                _react2.default.createElement(
+	                    "h2",
+	                    { className: "explanation__title", id: name },
+	                    name
+	                ),
+	                _react2.default.createElement("p", { className: "explanation__description",
+	                    dangerouslySetInnerHTML: { __html: this.props.description } }),
+	                _react2.default.createElement(_ExplanationTable2.default, { name: name,
+	                    items: this.props.items,
+	                    matcher: this.props.matcherForItems,
+	                    marks: this.props.marks }),
+	                items2,
+	                cite
+	            );
+	        }
+	    }]);
+
+	    return Explanation;
+	}(_react2.default.Component);
+
+	exports.default = Explanation;
+
+/***/ },
+/* 179 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(33);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var ExplanationTable = function (_React$Component) {
+	    _inherits(ExplanationTable, _React$Component);
+
+	    function ExplanationTable() {
+	        _classCallCheck(this, ExplanationTable);
+
+	        return _possibleConstructorReturn(this, (ExplanationTable.__proto__ || Object.getPrototypeOf(ExplanationTable)).apply(this, arguments));
+	    }
+
+	    _createClass(ExplanationTable, [{
+	        key: "render",
+	        value: function render() {
+	            var name = this.props.name;
+	            var mark = null;
+	            var _iteratorNormalCompletion = true;
+	            var _didIteratorError = false;
+	            var _iteratorError = undefined;
+
+	            try {
+	                for (var _iterator = this.props.marks[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+	                    var item = _step.value;
+
+	                    if (item[0] === name) {
+	                        var matcher = this.props.matcher ? this.props.matcher : function (s) {
+	                            return s;
+	                        };
+	                        mark = matcher(item[1]);
+	                    }
+	                }
+	            } catch (err) {
+	                _didIteratorError = true;
+	                _iteratorError = err;
+	            } finally {
+	                try {
+	                    if (!_iteratorNormalCompletion && _iterator.return) {
+	                        _iterator.return();
+	                    }
+	                } finally {
+	                    if (_didIteratorError) {
+	                        throw _iteratorError;
+	                    }
+	                }
+	            }
+
+	            var rows = this.props.items.map(function (aItem) {
+	                var title = aItem[0];
+	                if (!Array.isArray(title)) {
+	                    title = [title, title];
+	                }
+	                var cls = '';
+	                if (title[0] === mark) {
+	                    cls += 'marked';
+	                }
+	                var reading = aItem[1];
+	                var desc = aItem[2];
+	                var id = name + '_' + title[0];
+	                var titleHtml = _react2.default.createElement(
+	                    "span",
+	                    { className: cls, id: id },
+	                    title[1]
+	                );
+	                if (reading) {
+	                    titleHtml = _react2.default.createElement(
+	                        "div",
+	                        null,
+	                        _react2.default.createElement(
+	                            "div",
+	                            { className: "explanation-table__title-ruby" },
+	                            reading
+	                        ),
+	                        titleHtml
+	                    );
+	                }
+	                return _react2.default.createElement(
+	                    "tr",
+	                    { key: id },
+	                    _react2.default.createElement(
+	                        "th",
+	                        { className: "explanation-table__title-cell" },
+	                        titleHtml
+	                    ),
+	                    _react2.default.createElement(
+	                        "td",
+	                        { className: "explanation-table__text-cell" },
+	                        desc
+	                    )
+	                );
+	            });
+	            return _react2.default.createElement(
+	                "table",
+	                { className: "explanation-table" },
+	                _react2.default.createElement(
+	                    "tbody",
+	                    null,
+	                    rows
+	                )
+	            );
+	        }
+	    }]);
+
+	    return ExplanationTable;
+	}(_react2.default.Component);
+
+	exports.default = ExplanationTable;
+
+/***/ },
+/* 180 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var CopyrightBox = function (_React$Component) {
+	    _inherits(CopyrightBox, _React$Component);
+
+	    function CopyrightBox() {
+	        _classCallCheck(this, CopyrightBox);
+
+	        return _possibleConstructorReturn(this, (CopyrightBox.__proto__ || Object.getPrototypeOf(CopyrightBox)).apply(this, arguments));
+	    }
+
+	    _createClass(CopyrightBox, [{
+	        key: "render",
+	        value: function render() {
+	            return _react2.default.createElement(
+	                "address",
+	                null,
+	                "© 2016 東京☆播磨陰陽道研究会",
+	                _react2.default.createElement("br", null),
+	                "(窓際組)"
+	            );
+	        }
+	    }]);
+
+	    return CopyrightBox;
+	}(_react2.default.Component);
+
+	exports.default = CopyrightBox;
+
+/***/ },
+/* 181 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_RESULT__;"use strict";
+
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+
+	/*! Hammer.JS - v2.0.8 - 2016-04-23
 	 * http://hammerjs.github.io/
 	 *
 	 * Copyright (c) 2016 Jorik Tangelder;
@@ -21508,7 +22123,11 @@
 	  }function f(a, b, c) {
 	    return Array.isArray(a) ? (g(a, c[b], c), !0) : !1;
 	  }function g(a, b, c) {
-	    var e;if (a) if (a.forEach) a.forEach(b, c);else if (a.length !== d) for (e = 0; e < a.length;) b.call(c, a[e], e, a), e++;else for (e in a) a.hasOwnProperty(e) && b.call(c, a[e], e, a);
+	    var e;if (a) if (a.forEach) a.forEach(b, c);else if (a.length !== d) for (e = 0; e < a.length;) {
+	      b.call(c, a[e], e, a), e++;
+	    } else for (e in a) {
+	      a.hasOwnProperty(e) && b.call(c, a[e], e, a);
+	    }
 	  }function h(b, c, d) {
 	    var e = "DEPRECATED METHOD: " + c + "\n" + d + " AT \n";return function () {
 	      var c = new Error("get-stack-trace"),
@@ -21523,7 +22142,7 @@
 	      return a.apply(b, arguments);
 	    };
 	  }function k(a, b) {
-	    return typeof a == oa ? a.apply(b ? b[0] || d : d, b) : a;
+	    return (typeof a === "undefined" ? "undefined" : _typeof(a)) == oa ? a.apply(b ? b[0] || d : d, b) : a;
 	  }function l(a, b) {
 	    return a === d ? b : a;
 	  }function m(a, b, c) {
@@ -21598,9 +22217,13 @@
 	          l = F(i, j, k);e = l.x, f = l.y, c = qa(l.x) > qa(l.y) ? l.x : l.y, g = G(j, k), a.lastInterval = b;
 	    } else c = h.velocity, e = h.velocityX, f = h.velocityY, g = h.direction;b.velocity = c, b.velocityX = e, b.velocityY = f, b.direction = g;
 	  }function D(a) {
-	    for (var b = [], c = 0; c < a.pointers.length;) b[c] = { clientX: pa(a.pointers[c].clientX), clientY: pa(a.pointers[c].clientY) }, c++;return { timeStamp: ra(), pointers: b, center: E(b), deltaX: a.deltaX, deltaY: a.deltaY };
+	    for (var b = [], c = 0; c < a.pointers.length;) {
+	      b[c] = { clientX: pa(a.pointers[c].clientX), clientY: pa(a.pointers[c].clientY) }, c++;
+	    }return { timeStamp: ra(), pointers: b, center: E(b), deltaX: a.deltaX, deltaY: a.deltaY };
 	  }function E(a) {
-	    var b = a.length;if (1 === b) return { x: pa(a[0].clientX), y: pa(a[0].clientY) };for (var c = 0, d = 0, e = 0; b > e;) c += a[e].clientX, d += a[e].clientY, e++;return { x: pa(c / b), y: pa(d / b) };
+	    var b = a.length;if (1 === b) return { x: pa(a[0].clientX), y: pa(a[0].clientY) };for (var c = 0, d = 0, e = 0; b > e;) {
+	      c += a[e].clientX, d += a[e].clientY, e++;
+	    }return { x: pa(c / b), y: pa(d / b) };
 	  }function F(a, b, c) {
 	    return { x: b / a || 0, y: c / a || 0 };
 	  }function G(a, b) {
@@ -21634,7 +22257,11 @@
 	        h = [],
 	        i = this.target;if (f = c.filter(function (a) {
 	      return o(a.target, i);
-	    }), b === Ea) for (e = 0; e < f.length;) d[f[e].identifier] = !0, e++;for (e = 0; e < g.length;) d[g[e].identifier] && h.push(g[e]), b & (Ga | Ha) && delete d[g[e].identifier], e++;return h.length ? [t(f.concat(h), "identifier", !0), h] : void 0;
+	    }), b === Ea) for (e = 0; e < f.length;) {
+	      d[f[e].identifier] = !0, e++;
+	    }for (e = 0; e < g.length;) {
+	      d[g[e].identifier] && h.push(g[e]), b & (Ga | Ha) && delete d[g[e].identifier], e++;
+	    }return h.length ? [t(f.concat(h), "identifier", !0), h] : void 0;
 	  }function R() {
 	    x.apply(this, arguments);var a = j(this.handler, this);this.touch = new P(this.manager, a), this.mouse = new L(this.manager, a), this.primaryTouch = null, this.lastTouches = [];
 	  }function S(a, b) {
@@ -21642,7 +22269,7 @@
 	  }function T(a) {
 	    var b = a.changedPointers[0];if (b.identifier === this.primaryTouch) {
 	      var c = { x: b.clientX, y: b.clientY };this.lastTouches.push(c);var d = this.lastTouches,
-	          e = function () {
+	          e = function e() {
 	        var a = d.indexOf(c);a > -1 && d.splice(a, 1);
 	      };setTimeout(e, cb);
 	    }
@@ -21706,10 +22333,14 @@
 	      qa = Math.abs,
 	      ra = Date.now;la = "function" != typeof Object.assign ? function (a) {
 	    if (a === d || null === a) throw new TypeError("Cannot convert undefined or null to object");for (var b = Object(a), c = 1; c < arguments.length; c++) {
-	      var e = arguments[c];if (e !== d && null !== e) for (var f in e) e.hasOwnProperty(f) && (b[f] = e[f]);
+	      var e = arguments[c];if (e !== d && null !== e) for (var f in e) {
+	        e.hasOwnProperty(f) && (b[f] = e[f]);
+	      }
 	    }return b;
 	  } : Object.assign;var sa = h(function (a, b, c) {
-	    for (var e = Object.keys(b), f = 0; f < e.length;) (!c || c && a[e[f]] === d) && (a[e[f]] = b[e[f]]), f++;return a;
+	    for (var e = Object.keys(b), f = 0; f < e.length;) {
+	      (!c || c && a[e[f]] === d) && (a[e[f]] = b[e[f]]), f++;
+	    }return a;
 	  }, "extend", "Use `assign`."),
 	      ta = h(function (a, b) {
 	    return sa(a, b, !0);
@@ -21737,18 +22368,18 @@
 	      Oa = La | Ma,
 	      Pa = Na | Oa,
 	      Qa = ["x", "y"],
-	      Ra = ["clientX", "clientY"];x.prototype = { handler: function () {}, init: function () {
+	      Ra = ["clientX", "clientY"];x.prototype = { handler: function handler() {}, init: function init() {
 	      this.evEl && m(this.element, this.evEl, this.domHandler), this.evTarget && m(this.target, this.evTarget, this.domHandler), this.evWin && m(w(this.element), this.evWin, this.domHandler);
-	    }, destroy: function () {
+	    }, destroy: function destroy() {
 	      this.evEl && n(this.element, this.evEl, this.domHandler), this.evTarget && n(this.target, this.evTarget, this.domHandler), this.evWin && n(w(this.element), this.evWin, this.domHandler);
 	    } };var Sa = { mousedown: Ea, mousemove: Fa, mouseup: Ga },
 	      Ta = "mousedown",
-	      Ua = "mousemove mouseup";i(L, x, { handler: function (a) {
+	      Ua = "mousemove mouseup";i(L, x, { handler: function handler(a) {
 	      var b = Sa[a.type];b & Ea && 0 === a.button && (this.pressed = !0), b & Fa && 1 !== a.which && (b = Ga), this.pressed && (b & Ga && (this.pressed = !1), this.callback(this.manager, b, { pointers: [a], changedPointers: [a], pointerType: Ba, srcEvent: a }));
 	    } });var Va = { pointerdown: Ea, pointermove: Fa, pointerup: Ga, pointercancel: Ha, pointerout: Ha },
 	      Wa = { 2: za, 3: Aa, 4: Ba, 5: Ca },
 	      Xa = "pointerdown",
-	      Ya = "pointermove pointerup pointercancel";a.MSPointerEvent && !a.PointerEvent && (Xa = "MSPointerDown", Ya = "MSPointerMove MSPointerUp MSPointerCancel"), i(M, x, { handler: function (a) {
+	      Ya = "pointermove pointerup pointercancel";a.MSPointerEvent && !a.PointerEvent && (Xa = "MSPointerDown", Ya = "MSPointerMove MSPointerUp MSPointerCancel"), i(M, x, { handler: function handler(a) {
 	      var b = this.store,
 	          c = !1,
 	          d = a.type.toLowerCase().replace("ms", ""),
@@ -21758,21 +22389,21 @@
 	          h = r(b, a.pointerId, "pointerId");e & Ea && (0 === a.button || g) ? 0 > h && (b.push(a), h = b.length - 1) : e & (Ga | Ha) && (c = !0), 0 > h || (b[h] = a, this.callback(this.manager, e, { pointers: b, changedPointers: [a], pointerType: f, srcEvent: a }), c && b.splice(h, 1));
 	    } });var Za = { touchstart: Ea, touchmove: Fa, touchend: Ga, touchcancel: Ha },
 	      $a = "touchstart",
-	      _a = "touchstart touchmove touchend touchcancel";i(N, x, { handler: function (a) {
+	      _a = "touchstart touchmove touchend touchcancel";i(N, x, { handler: function handler(a) {
 	      var b = Za[a.type];if (b === Ea && (this.started = !0), this.started) {
 	        var c = O.call(this, a, b);b & (Ga | Ha) && c[0].length - c[1].length === 0 && (this.started = !1), this.callback(this.manager, b, { pointers: c[0], changedPointers: c[1], pointerType: za, srcEvent: a });
 	      }
 	    } });var ab = { touchstart: Ea, touchmove: Fa, touchend: Ga, touchcancel: Ha },
-	      bb = "touchstart touchmove touchend touchcancel";i(P, x, { handler: function (a) {
+	      bb = "touchstart touchmove touchend touchcancel";i(P, x, { handler: function handler(a) {
 	      var b = ab[a.type],
 	          c = Q.call(this, a, b);c && this.callback(this.manager, b, { pointers: c[0], changedPointers: c[1], pointerType: za, srcEvent: a });
 	    } });var cb = 2500,
-	      db = 25;i(R, x, { handler: function (a, b, c) {
+	      db = 25;i(R, x, { handler: function handler(a, b, c) {
 	      var d = c.pointerType == za,
 	          e = c.pointerType == Ba;if (!(e && c.sourceCapabilities && c.sourceCapabilities.firesTouchEvents)) {
 	        if (d) S.call(this, b, c);else if (e && U.call(this, c)) return;this.callback(a, b, c);
 	      }
-	    }, destroy: function () {
+	    }, destroy: function destroy() {
 	      this.touch.destroy(), this.mouse.destroy();
 	    } });var eb = u(na.style, "touchAction"),
 	      fb = eb !== d,
@@ -21782,15 +22413,15 @@
 	      jb = "none",
 	      kb = "pan-x",
 	      lb = "pan-y",
-	      mb = X();V.prototype = { set: function (a) {
+	      mb = X();V.prototype = { set: function set(a) {
 	      a == gb && (a = this.compute()), fb && this.manager.element.style && mb[a] && (this.manager.element.style[eb] = a), this.actions = a.toLowerCase().trim();
-	    }, update: function () {
+	    }, update: function update() {
 	      this.set(this.manager.options.touchAction);
-	    }, compute: function () {
+	    }, compute: function compute() {
 	      var a = [];return g(this.manager.recognizers, function (b) {
 	        k(b.options.enable, [b]) && (a = a.concat(b.getTouchAction()));
 	      }), W(a.join(" "));
-	    }, preventDefaults: function (a) {
+	    }, preventDefaults: function preventDefaults(a) {
 	      var b = a.srcEvent,
 	          c = a.offsetDirection;if (this.manager.session.prevented) return void b.preventDefault();var d = this.actions,
 	          e = p(d, jb) && !mb[jb],
@@ -21800,7 +22431,7 @@
 	            i = a.distance < 2,
 	            j = a.deltaTime < 250;if (h && i && j) return;
 	      }return g && f ? void 0 : e || f && c & Na || g && c & Oa ? this.preventSrc(b) : void 0;
-	    }, preventSrc: function (a) {
+	    }, preventSrc: function preventSrc(a) {
 	      this.manager.session.prevented = !0, a.preventDefault();
 	    } };var nb = 1,
 	      ob = 2,
@@ -21808,89 +22439,89 @@
 	      qb = 8,
 	      rb = qb,
 	      sb = 16,
-	      tb = 32;Y.prototype = { defaults: {}, set: function (a) {
+	      tb = 32;Y.prototype = { defaults: {}, set: function set(a) {
 	      return la(this.options, a), this.manager && this.manager.touchAction.update(), this;
-	    }, recognizeWith: function (a) {
+	    }, recognizeWith: function recognizeWith(a) {
 	      if (f(a, "recognizeWith", this)) return this;var b = this.simultaneous;return a = _(a, this), b[a.id] || (b[a.id] = a, a.recognizeWith(this)), this;
-	    }, dropRecognizeWith: function (a) {
+	    }, dropRecognizeWith: function dropRecognizeWith(a) {
 	      return f(a, "dropRecognizeWith", this) ? this : (a = _(a, this), delete this.simultaneous[a.id], this);
-	    }, requireFailure: function (a) {
+	    }, requireFailure: function requireFailure(a) {
 	      if (f(a, "requireFailure", this)) return this;var b = this.requireFail;return a = _(a, this), -1 === r(b, a) && (b.push(a), a.requireFailure(this)), this;
-	    }, dropRequireFailure: function (a) {
+	    }, dropRequireFailure: function dropRequireFailure(a) {
 	      if (f(a, "dropRequireFailure", this)) return this;a = _(a, this);var b = r(this.requireFail, a);return b > -1 && this.requireFail.splice(b, 1), this;
-	    }, hasRequireFailures: function () {
+	    }, hasRequireFailures: function hasRequireFailures() {
 	      return this.requireFail.length > 0;
-	    }, canRecognizeWith: function (a) {
+	    }, canRecognizeWith: function canRecognizeWith(a) {
 	      return !!this.simultaneous[a.id];
-	    }, emit: function (a) {
+	    }, emit: function emit(a) {
 	      function b(b) {
 	        c.manager.emit(b, a);
 	      }var c = this,
 	          d = this.state;qb > d && b(c.options.event + Z(d)), b(c.options.event), a.additionalEvent && b(a.additionalEvent), d >= qb && b(c.options.event + Z(d));
-	    }, tryEmit: function (a) {
+	    }, tryEmit: function tryEmit(a) {
 	      return this.canEmit() ? this.emit(a) : void (this.state = tb);
-	    }, canEmit: function () {
+	    }, canEmit: function canEmit() {
 	      for (var a = 0; a < this.requireFail.length;) {
 	        if (!(this.requireFail[a].state & (tb | nb))) return !1;a++;
 	      }return !0;
-	    }, recognize: function (a) {
+	    }, recognize: function recognize(a) {
 	      var b = la({}, a);return k(this.options.enable, [this, b]) ? (this.state & (rb | sb | tb) && (this.state = nb), this.state = this.process(b), void (this.state & (ob | pb | qb | sb) && this.tryEmit(b))) : (this.reset(), void (this.state = tb));
-	    }, process: function (a) {}, getTouchAction: function () {}, reset: function () {} }, i(aa, Y, { defaults: { pointers: 1 }, attrTest: function (a) {
+	    }, process: function process(a) {}, getTouchAction: function getTouchAction() {}, reset: function reset() {} }, i(aa, Y, { defaults: { pointers: 1 }, attrTest: function attrTest(a) {
 	      var b = this.options.pointers;return 0 === b || a.pointers.length === b;
-	    }, process: function (a) {
+	    }, process: function process(a) {
 	      var b = this.state,
 	          c = a.eventType,
 	          d = b & (ob | pb),
 	          e = this.attrTest(a);return d && (c & Ha || !e) ? b | sb : d || e ? c & Ga ? b | qb : b & ob ? b | pb : ob : tb;
-	    } }), i(ba, aa, { defaults: { event: "pan", threshold: 10, pointers: 1, direction: Pa }, getTouchAction: function () {
+	    } }), i(ba, aa, { defaults: { event: "pan", threshold: 10, pointers: 1, direction: Pa }, getTouchAction: function getTouchAction() {
 	      var a = this.options.direction,
 	          b = [];return a & Na && b.push(lb), a & Oa && b.push(kb), b;
-	    }, directionTest: function (a) {
+	    }, directionTest: function directionTest(a) {
 	      var b = this.options,
 	          c = !0,
 	          d = a.distance,
 	          e = a.direction,
 	          f = a.deltaX,
 	          g = a.deltaY;return e & b.direction || (b.direction & Na ? (e = 0 === f ? Ia : 0 > f ? Ja : Ka, c = f != this.pX, d = Math.abs(a.deltaX)) : (e = 0 === g ? Ia : 0 > g ? La : Ma, c = g != this.pY, d = Math.abs(a.deltaY))), a.direction = e, c && d > b.threshold && e & b.direction;
-	    }, attrTest: function (a) {
+	    }, attrTest: function attrTest(a) {
 	      return aa.prototype.attrTest.call(this, a) && (this.state & ob || !(this.state & ob) && this.directionTest(a));
-	    }, emit: function (a) {
+	    }, emit: function emit(a) {
 	      this.pX = a.deltaX, this.pY = a.deltaY;var b = $(a.direction);b && (a.additionalEvent = this.options.event + b), this._super.emit.call(this, a);
-	    } }), i(ca, aa, { defaults: { event: "pinch", threshold: 0, pointers: 2 }, getTouchAction: function () {
+	    } }), i(ca, aa, { defaults: { event: "pinch", threshold: 0, pointers: 2 }, getTouchAction: function getTouchAction() {
 	      return [jb];
-	    }, attrTest: function (a) {
+	    }, attrTest: function attrTest(a) {
 	      return this._super.attrTest.call(this, a) && (Math.abs(a.scale - 1) > this.options.threshold || this.state & ob);
-	    }, emit: function (a) {
+	    }, emit: function emit(a) {
 	      if (1 !== a.scale) {
 	        var b = a.scale < 1 ? "in" : "out";a.additionalEvent = this.options.event + b;
 	      }this._super.emit.call(this, a);
-	    } }), i(da, Y, { defaults: { event: "press", pointers: 1, time: 251, threshold: 9 }, getTouchAction: function () {
+	    } }), i(da, Y, { defaults: { event: "press", pointers: 1, time: 251, threshold: 9 }, getTouchAction: function getTouchAction() {
 	      return [hb];
-	    }, process: function (a) {
+	    }, process: function process(a) {
 	      var b = this.options,
 	          c = a.pointers.length === b.pointers,
 	          d = a.distance < b.threshold,
 	          f = a.deltaTime > b.time;if (this._input = a, !d || !c || a.eventType & (Ga | Ha) && !f) this.reset();else if (a.eventType & Ea) this.reset(), this._timer = e(function () {
 	        this.state = rb, this.tryEmit();
 	      }, b.time, this);else if (a.eventType & Ga) return rb;return tb;
-	    }, reset: function () {
+	    }, reset: function reset() {
 	      clearTimeout(this._timer);
-	    }, emit: function (a) {
+	    }, emit: function emit(a) {
 	      this.state === rb && (a && a.eventType & Ga ? this.manager.emit(this.options.event + "up", a) : (this._input.timeStamp = ra(), this.manager.emit(this.options.event, this._input)));
-	    } }), i(ea, aa, { defaults: { event: "rotate", threshold: 0, pointers: 2 }, getTouchAction: function () {
+	    } }), i(ea, aa, { defaults: { event: "rotate", threshold: 0, pointers: 2 }, getTouchAction: function getTouchAction() {
 	      return [jb];
-	    }, attrTest: function (a) {
+	    }, attrTest: function attrTest(a) {
 	      return this._super.attrTest.call(this, a) && (Math.abs(a.rotation) > this.options.threshold || this.state & ob);
-	    } }), i(fa, aa, { defaults: { event: "swipe", threshold: 10, velocity: .3, direction: Na | Oa, pointers: 1 }, getTouchAction: function () {
+	    } }), i(fa, aa, { defaults: { event: "swipe", threshold: 10, velocity: .3, direction: Na | Oa, pointers: 1 }, getTouchAction: function getTouchAction() {
 	      return ba.prototype.getTouchAction.call(this);
-	    }, attrTest: function (a) {
+	    }, attrTest: function attrTest(a) {
 	      var b,
 	          c = this.options.direction;return c & (Na | Oa) ? b = a.overallVelocity : c & Na ? b = a.overallVelocityX : c & Oa && (b = a.overallVelocityY), this._super.attrTest.call(this, a) && c & a.offsetDirection && a.distance > this.options.threshold && a.maxPointers == this.options.pointers && qa(b) > this.options.velocity && a.eventType & Ga;
-	    }, emit: function (a) {
+	    }, emit: function emit(a) {
 	      var b = $(a.offsetDirection);b && this.manager.emit(this.options.event + b, a), this.manager.emit(this.options.event, a);
-	    } }), i(ga, Y, { defaults: { event: "tap", pointers: 1, taps: 1, interval: 300, time: 250, threshold: 9, posThreshold: 10 }, getTouchAction: function () {
+	    } }), i(ga, Y, { defaults: { event: "tap", pointers: 1, taps: 1, interval: 300, time: 250, threshold: 9, posThreshold: 10 }, getTouchAction: function getTouchAction() {
 	      return [ib];
-	    }, process: function (a) {
+	    }, process: function process(a) {
 	      var b = this.options,
 	          c = a.pointers.length === b.pointers,
 	          d = a.distance < b.threshold,
@@ -21900,53 +22531,59 @@
 	          this.state = rb, this.tryEmit();
 	        }, b.interval, this), ob) : rb;
 	      }return tb;
-	    }, failTimeout: function () {
+	    }, failTimeout: function failTimeout() {
 	      return this._timer = e(function () {
 	        this.state = tb;
 	      }, this.options.interval, this), tb;
-	    }, reset: function () {
+	    }, reset: function reset() {
 	      clearTimeout(this._timer);
-	    }, emit: function () {
+	    }, emit: function emit() {
 	      this.state == rb && (this._input.tapCount = this.count, this.manager.emit(this.options.event, this._input));
 	    } }), ha.VERSION = "2.0.8", ha.defaults = { domEvents: !1, touchAction: gb, enable: !0, inputTarget: null, inputClass: null, preset: [[ea, { enable: !1 }], [ca, { enable: !1 }, ["rotate"]], [fa, { direction: Na }], [ba, { direction: Na }, ["swipe"]], [ga], [ga, { event: "doubletap", taps: 2 }, ["tap"]], [da]], cssProps: { userSelect: "none", touchSelect: "none", touchCallout: "none", contentZooming: "none", userDrag: "none", tapHighlightColor: "rgba(0,0,0,0)" } };var ub = 1,
-	      vb = 2;ia.prototype = { set: function (a) {
+	      vb = 2;ia.prototype = { set: function set(a) {
 	      return la(this.options, a), a.touchAction && this.touchAction.update(), a.inputTarget && (this.input.destroy(), this.input.target = a.inputTarget, this.input.init()), this;
-	    }, stop: function (a) {
+	    }, stop: function stop(a) {
 	      this.session.stopped = a ? vb : ub;
-	    }, recognize: function (a) {
+	    }, recognize: function recognize(a) {
 	      var b = this.session;if (!b.stopped) {
 	        this.touchAction.preventDefaults(a);var c,
 	            d = this.recognizers,
-	            e = b.curRecognizer;(!e || e && e.state & rb) && (e = b.curRecognizer = null);for (var f = 0; f < d.length;) c = d[f], b.stopped === vb || e && c != e && !c.canRecognizeWith(e) ? c.reset() : c.recognize(a), !e && c.state & (ob | pb | qb) && (e = b.curRecognizer = c), f++;
+	            e = b.curRecognizer;(!e || e && e.state & rb) && (e = b.curRecognizer = null);for (var f = 0; f < d.length;) {
+	          c = d[f], b.stopped === vb || e && c != e && !c.canRecognizeWith(e) ? c.reset() : c.recognize(a), !e && c.state & (ob | pb | qb) && (e = b.curRecognizer = c), f++;
+	        }
 	      }
-	    }, get: function (a) {
-	      if (a instanceof Y) return a;for (var b = this.recognizers, c = 0; c < b.length; c++) if (b[c].options.event == a) return b[c];return null;
-	    }, add: function (a) {
+	    }, get: function get(a) {
+	      if (a instanceof Y) return a;for (var b = this.recognizers, c = 0; c < b.length; c++) {
+	        if (b[c].options.event == a) return b[c];
+	      }return null;
+	    }, add: function add(a) {
 	      if (f(a, "add", this)) return this;var b = this.get(a.options.event);return b && this.remove(b), this.recognizers.push(a), a.manager = this, this.touchAction.update(), a;
-	    }, remove: function (a) {
+	    }, remove: function remove(a) {
 	      if (f(a, "remove", this)) return this;if (a = this.get(a)) {
 	        var b = this.recognizers,
 	            c = r(b, a);-1 !== c && (b.splice(c, 1), this.touchAction.update());
 	      }return this;
-	    }, on: function (a, b) {
+	    }, on: function on(a, b) {
 	      if (a !== d && b !== d) {
 	        var c = this.handlers;return g(q(a), function (a) {
 	          c[a] = c[a] || [], c[a].push(b);
 	        }), this;
 	      }
-	    }, off: function (a, b) {
+	    }, off: function off(a, b) {
 	      if (a !== d) {
 	        var c = this.handlers;return g(q(a), function (a) {
 	          b ? c[a] && c[a].splice(r(c[a], b), 1) : delete c[a];
 	        }), this;
 	      }
-	    }, emit: function (a, b) {
+	    }, emit: function emit(a, b) {
 	      this.options.domEvents && ka(a, b);var c = this.handlers[a] && this.handlers[a].slice();if (c && c.length) {
 	        b.type = a, b.preventDefault = function () {
 	          b.srcEvent.preventDefault();
-	        };for (var d = 0; d < c.length;) c[d](b), d++;
+	        };for (var d = 0; d < c.length;) {
+	          c[d](b), d++;
+	        }
 	      }
-	    }, destroy: function () {
+	    }, destroy: function destroy() {
 	      this.element && ja(this, !1), this.handlers = {}, this.session = {}, this.input.destroy(), this.element = null;
 	    } }, la(ha, { INPUT_START: Ea, INPUT_MOVE: Fa, INPUT_END: Ga, INPUT_CANCEL: Ha, STATE_POSSIBLE: nb, STATE_BEGAN: ob, STATE_CHANGED: pb, STATE_ENDED: qb, STATE_RECOGNIZED: rb, STATE_CANCELLED: sb, STATE_FAILED: tb, DIRECTION_NONE: Ia, DIRECTION_LEFT: Ja, DIRECTION_RIGHT: Ka, DIRECTION_UP: La, DIRECTION_DOWN: Ma, DIRECTION_HORIZONTAL: Na, DIRECTION_VERTICAL: Oa, DIRECTION_ALL: Pa, Manager: ia, Input: x, TouchAction: V, TouchInput: P, MouseInput: L, PointerEventInput: M, TouchMouseInput: R, SingleTouchInput: N, Recognizer: Y, AttrRecognizer: aa, Tap: ga, Pan: ba, Swipe: fa, Pinch: ca, Rotate: ea, Press: da, on: m, off: n, each: g, merge: ta, extend: sa, assign: la, inherit: i, bindFn: j, prefixed: u });var wb = "undefined" != typeof a ? a : "undefined" != typeof self ? self : {};wb.Hammer = ha,  true ? !(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
 	    return ha;
@@ -21955,8 +22592,10 @@
 	//# sourceMappingURL=hammer.min.js.map
 
 /***/ },
-/* 175 */
+/* 182 */
 /***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
 
 	function int(v) {
 	    return v | 0;
@@ -22105,7 +22744,7 @@
 	 */
 	function Cache() {}
 	Cache.prototype = {
-	    get: function (key, missed) {
+	    get: function get(key, missed) {
 	        if (typeof this[key] === 'undefined') {
 	            this[key] = missed();
 	        }
@@ -22305,13 +22944,13 @@
 	}
 
 	Moon.prototype = {
-	    lastDay: function (y, m) {
+	    lastDay: function lastDay(y, m) {
 	        var nextDay = new Date(y, m + 1);
 	        var rv = new Date();
 	        rv.setTime(nextDay.getTime() - 24 * 60 * 60 * 1000);
 	        return rv;
 	    },
-	    fullmoonOf: function (date) {
+	    fullmoonOf: function fullmoonOf(date) {
 	        var rv = null;
 	        this.fullmoons.forEach(function (fullmoon) {
 	            if (isSameDay(date, fullmoon)) {
@@ -22320,7 +22959,7 @@
 	        });
 	        return rv;
 	    },
-	    newmoonOf: function (date) {
+	    newmoonOf: function newmoonOf(date) {
 	        var rv = null;
 	        this.newmoons.forEach(function (newmoon) {
 	            if (isSameDay(date, newmoon)) {
@@ -22347,7 +22986,7 @@
 	    this.day = day;
 	}
 	OldDate.prototype = {
-	    toString: function () {
+	    toString: function toString() {
 	        var s = "";
 	        if (this.leap) {
 	            s += "閏";
@@ -22918,174 +23557,6 @@
 	        Moon: Moon
 	    };
 	}
-
-/***/ },
-/* 176 */
-/***/ function(module, exports) {
-
-	function parseHash(url) {
-	    var parts = url.split('#');
-	    if (parts.length < 2) {
-	        return null;
-	    }
-	    return decodeURIComponent(parts[1]);
-	}
-	function addClass(e, cls) {
-	    var a = e.getAttribute("class");
-	    var classes = a ? a.split(' ') : [];
-	    classes.push(cls);
-	    e.setAttribute("class", classes.join(' '));
-	}
-	function removeClass(e, cls) {
-	    var newClasses = [];
-	    var a = e.getAttribute("class");
-	    var classes = a ? a.split(' ') : [];
-	    classes.forEach(function (c) {
-	        if (c != cls) {
-	            newClasses.push(c);
-	        }
-	    });
-	    e.setAttribute("class", newClasses.join(' '));
-	}
-
-	module.exports = {
-	    parseHash: parseHash,
-	    addClass: addClass,
-	    removeClass: removeClass
-	};
-
-/***/ },
-/* 177 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-	var ReactDOM = __webpack_require__(33);
-	var Explanation = __webpack_require__(178);
-
-	module.exports = React.createClass({
-	    displayName: "exports",
-
-	    render: function () {
-	        var elts = [];
-	        this.props.data.forEach(function (aItem) {
-	            var index = elts.length;
-	            if (index) {
-	                elts.push(React.createElement("hr", { key: "separator" + index, className: "explanations__separator" }));
-	            }
-	            elts.push(React.createElement(Explanation, { key: "explanation" + index,
-	                name: aItem.name,
-	                description: aItem.description,
-	                items: aItem.items,
-	                items2: aItem.items2,
-	                cite: aItem.cite }));
-	        });
-	        return React.createElement(
-	            "div",
-	            { className: "explanations" },
-	            elts
-	        );
-	    }
-	});
-
-/***/ },
-/* 178 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-	var ReactDOM = __webpack_require__(33);
-	var ExplanationTable = __webpack_require__(179);
-
-	module.exports = React.createClass({
-	    displayName: "exports",
-
-	    render: function () {
-	        var name = this.props.name;
-	        var items2 = this.props.items2 ? React.createElement(ExplanationTable, { name: name, items: this.props.items2 }) : null;
-	        var cite = this.props.cite ? React.createElement(
-	            "p",
-	            null,
-	            React.createElement("cite", { dangerouslySetInnerHTML: { __html: this.props.cite } })
-	        ) : null;
-	        return React.createElement(
-	            "div",
-	            null,
-	            React.createElement(
-	                "h2",
-	                { className: "explanation__title", id: name },
-	                name
-	            ),
-	            React.createElement("p", { className: "explanation__description",
-	                dangerouslySetInnerHTML: { __html: this.props.description } }),
-	            React.createElement(ExplanationTable, { name: name, items: this.props.items }),
-	            items2,
-	            cite
-	        );
-	    }
-	});
-
-/***/ },
-/* 179 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-	var ReactDOM = __webpack_require__(33);
-
-	module.exports = React.createClass({
-	    displayName: "exports",
-
-	    render: function () {
-	        var name = this.props.name;
-	        var rows = this.props.items.map(function (aItem) {
-	            var title = aItem[0];
-	            if (!Array.isArray(title)) {
-	                title = [title, title];
-	            }
-	            var reading = aItem[1];
-	            var desc = aItem[2];
-	            var id = name + '_' + title[0];
-	            var titleHtml = React.createElement(
-	                "span",
-	                { id: id },
-	                title[1]
-	            );
-	            if (reading) {
-	                titleHtml = React.createElement(
-	                    "div",
-	                    null,
-	                    React.createElement(
-	                        "div",
-	                        { className: "explanation-table__title-ruby" },
-	                        reading
-	                    ),
-	                    titleHtml
-	                );
-	            }
-	            return React.createElement(
-	                "tr",
-	                { key: id },
-	                React.createElement(
-	                    "th",
-	                    { className: "explanation-table__title-cell" },
-	                    titleHtml
-	                ),
-	                React.createElement(
-	                    "td",
-	                    { className: "explanation-table__text-cell" },
-	                    desc
-	                )
-	            );
-	        });
-	        return React.createElement(
-	            "table",
-	            { className: "explanation-table" },
-	            React.createElement(
-	                "tbody",
-	                null,
-	                rows
-	            )
-	        );
-	    }
-	});
 
 /***/ }
 /******/ ]);

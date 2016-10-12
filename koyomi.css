@@ -5,12 +5,10 @@ body {
 #koyomi {
     text-align: center;
 }
-#koyomi a:link,
-.box:link {
+#koyomi a:link {
     text-decoration: none;
 }
-#koyomi a:hover,
-.box:hover {
+#koyomi a:hover {
     background-color: #cccccc;
 }
 .keyNumber {

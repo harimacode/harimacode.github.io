@@ -1,0 +1,107 @@
+.rekichu__item {
+    box-shadow: 3px 3px 3px rgba(0,0,0,0.2);
+    line-height: 1.0;
+    background-color: #666666;
+    color: white;
+    display: inline-block;
+    position: relative;
+}
+.rekichu__item:hover {
+    background-color:#333333;
+}
+.rekichu__item:nth-child(2n) {
+    background-color: #999999;
+}
+.rekichu__item:nth-child(2n):hover {
+    background-color: #cccccc;
+}
+
+.rekichu__title {
+    color: #cccccc;
+    text-align: left;
+}
+.rekichu__item:nth-child(2n) .rekichu__title {
+    color: white;
+}
+
+.rekichu__content {
+    font-weight: bold;
+    position: absolute;
+    text-align: right;
+}
+
+.rekichu__toolbar {
+    background-color: #999999;
+    position: fixed;
+    top: -16.6vw;
+    left: 0;
+    opacity: 0;
+    transition: all 0.25s;
+    z-index: 2;
+    width: 100%;
+}
+.rekichu--visible {
+    top: 0;
+    opacity: 1;
+}
+.rekichu__toolbar .rekichu__item {
+    padding: 0;
+    margin: 0;
+    display: block;
+    float: left;
+    width: 16.6vw;
+    height: 16.6vw;
+}
+
+@media (min-width: 769px) {
+    /* PC・タブレット用表示 */
+    .rekichu__item {
+        font-size: 1.8em;
+        margin: 0.3em;
+        padding: 0.1em;
+        width: 3.2em;
+        height: 3.2em;
+    }
+    .rekichu__title {
+        font-size: 0.75em;
+    }
+    .rekichu__content {
+        right: 0.1em;
+        bottom: 0.1em;
+    }
+
+    .rekichu__toolbar {
+        width: 42em;
+        margin-left: calc((100% - 42em) / 2);
+        margin-left: -webkit-calc((100% - 42em) / 2);
+        margin-right: auto;
+    }
+    .rekichu__toolbar .rekichu__item {
+        width: 16.66%;
+        height: 2em;
+    }
+}
+@media (max-width: 768px) {
+    /* モバイル用デザイン */
+    .rekichu__item {
+        font-size: 7vw;
+        margin: 2vw;
+        padding: 1vw;
+        width: 24vw;
+        height: 24vw;
+    }
+    .rekichu__title {
+        font-size: 5vw;
+    }
+    .rekichu__content {
+        right: 1vw;
+        bottom: 1vw;
+    }
+
+    .rekichu__toolbar .rekichu__content {
+        white-space: nowrap;
+        width: 2em;
+        overflow: hidden;
+    }
+}
+
