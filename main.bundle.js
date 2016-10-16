@@ -104,13 +104,13 @@
 	    description: "インド由来の古法二十七宿を採用。<strong>星々</strong>に対応し<strong>様々</strong>な吉凶判断にも用います。",
 	    items: [
 	    // 東方の蒼竜七宿
-	    ["角", "かく", ["す星(乙女座のα等)", "物事を始めるに吉。葬式・心の問題に凶事あり。"]], ["亢", "こう", ["あみ星(乙女座のψ等)", "婚礼、取引、交渉に吉。建築など土に凶事あり。"]], ["氐", "てい", ["ともぼし(天秤座のα等)", "転居・転職に吉。家の増改築などにに凶・水難あり。"]], ["房", "ぼう", ["そい星(蠍座のβ等)", "神事に吉。隠し事に凶事あり。"]], ["心", "しん", ["なかご星(蠍座のα等)", "神事、旅行に吉。葬儀・埋葬に凶事あり。盗難の相。"]], ["尾", "び", ["あしたれ星(蠍座のλ等)", "話し合い・薬に吉。衣類裁断・不注意の厄あり。"]], ["箕", "き", ["み星(射手座のγ等)", "金運に吉。身内との間に凶事。婚礼大凶。"]],
+	    ["角", "かく", "物事を始めるに吉。葬式・心の問題に凶事あり。"], ["亢", "こう", "婚礼、取引、交渉に吉。建築など土に凶事あり。"], ["氐", "てい", "転居・転職に吉。家の増改築などにに凶・水難あり。"], ["房", "ぼう", "神事に吉。隠し事に凶事あり。"], ["心", "しん", "神事、旅行に吉。葬儀・埋葬に凶事あり。盗難の相。"], ["尾", "び", "話し合い・薬に吉。衣類裁断・不注意の厄あり。"], ["箕", "き", "金運に吉。身内との間に凶事。婚礼大凶。"],
 	    // 北方の玄武六宿
-	    ["斗", "と", ["ひつき星(射手座の東半分)", "種まきに吉。この日動けば凶事あり。"]], ["女", "じょ", ["うるき星(水瓶座のε等)", "武器作り・紙すき・神参りに吉。概ね凶事日なり。"]], ["虚", "きょ", ["とみて星(小馬座のα等)", "智を得ることに吉。造作すれば厄あり。"]], ["危", "き", ["うみやめ星(ペガサス座のε等)", "目上の者に従う時は吉。衣類裁断・移転に凶事あり。"]], ["室", "しつ", ["はつい星(ペガサス座のα等)", "造作・近き方に吉あり。遠方に凶事あり。仏事に凶。"]], ["壁", "へき", ["やまめ星(ペガサス座のγ等)", "子孫繁栄に吉。南方に凶事あり。"]],
+	    ["斗", "と", "種まきに吉。この日動けば凶事あり。"], ["女", "じょ", "武器作り・紙すき・神参りに吉。概ね凶事日なり。"], ["虚", "きょ", "智を得ることに吉。造作すれば厄あり。"], ["危", "き", "目上の者に従う時は吉。衣類裁断・移転に凶事あり。"], ["室", "しつ", "造作・近き方に吉あり。遠方に凶事あり。仏事に凶。"], ["壁", "へき", "子孫繁栄に吉。南方に凶事あり。"],
 	    // 西方の白虎七宿
-	    ["奎", "けい", ["とかきぼし星(アンドロメダのδ等)", "婚礼、棟上げに吉。交渉に凶事あり。"]], ["婁", "ろう", ["踏鞴星(羊座のα等)", "衣類裁断すれば寿命増す。博打に凶事あり。"]], ["胃", "い", ["えきえ星(羊座の41番星他)", "婚礼・造作・公事に吉あり。衣類裁断・私事は凶事あり。"]], ["昴", "ぼう", ["昴星(牛座プレアデス)", "祈願に吉。土を動かすに凶事あり。"]], ["畢", "ひつ", ["雨降り星(牛座のヒヤデス他)", "神事・祭礼に吉あり。特に婚礼に凶あり。"]], ["觜", "し", ["とろき星(オリオン座のψ等)", "仕事始めに吉。造作に用いれば家財失う。"]], ["参", "しん", ["からすき星(オリオン座の南半分)", "財宝・養子・遠出に吉。新しきことに凶事あり。"]],
+	    ["奎", "けい", "婚礼、棟上げに吉。交渉に凶事あり。"], ["婁", "ろう", "衣類裁断すれば寿命増す。博打に凶事あり。"], ["胃", "い", "婚礼・造作・公事に吉あり。衣類裁断・私事は凶事あり。"], ["昴", "ぼう", "祈願に吉。土を動かすに凶事あり。"], ["畢", "ひつ", "神事・祭礼に吉あり。特に婚礼に凶あり。"], ["觜", "し", "仕事始めに吉。造作に用いれば家財失う。"], ["参", "しん", "財宝・養子・遠出に吉。新しきことに凶事あり。"],
 	    // 南方の朱雀七宿
-	    ["井", "せい", ["ちちり星(双子座のε付近)", "種まき・神事に吉。衣類裁断すれば離婚の相あり。"]], ["鬼", "き", ["たまほめ星(蟹座の中央付近)", "万事に大吉。ただし婚礼は凶事あり。"]], ["柳", "りゅう", ["ぬりこ星(ヒドラ座の頭部)", "物事を断るに吉。葬儀に不幸あり。"]], ["星", "せい", ["ほとおり星(ヒドラ座のα等)", "治療に吉。婚礼・葬式・種まきに凶事あり。"]], ["張", "ちょう", ["ちりこ星(ヒドラ座のカッパ等)", "養蚕に吉。木を切れば厄あり。"]], ["翼", "よく", ["たすき星(コップ座付近)", "旅立ちに吉。婚礼は離婚の相あり。"]], ["軫", "しん", ["みつかけ星(カラス座付近)", "万事に吉。ただし、衣類裁断すれば火難あり。"]]]
+	    ["井", "せい", "種まき・神事に吉。衣類裁断すれば離婚の相あり。"], ["鬼", "き", "万事に大吉。ただし婚礼は凶事あり。"], ["柳", "りゅう", "物事を断るに吉。葬儀に不幸あり。"], ["星", "せい", "治療に吉。婚礼・葬式・種まきに凶事あり。"], ["張", "ちょう", "養蚕に吉。木を切れば厄あり。"], ["翼", "よく", "旅立ちに吉。婚礼は離婚の相あり。"], ["軫", "しん", "万事に吉。ただし、衣類裁断すれば火難あり。"]]
 	}, {
 	    name: "納音",
 	    description: "物事の吉凶(人の気の現出)が変動するときに出る音のことで、<strong>兆し</strong>を読みます。",
@@ -21991,110 +21991,50 @@
 	                }
 	            }
 
-	            var rows = [];
-	            var _iteratorNormalCompletion2 = true;
-	            var _didIteratorError2 = false;
-	            var _iteratorError2 = undefined;
-
-	            try {
-	                for (var _iterator2 = this.props.items[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-	                    var item = _step2.value;
-
-	                    var title = item[0];
-	                    if (!Array.isArray(title)) {
-	                        title = [title, title];
-	                    }
-	                    var cls = '';
-	                    if (title[0] === mark) {
-	                        cls += 'marked';
-	                    }
-	                    var reading = item[1];
-	                    var descs = item[2];
-	                    if (!Array.isArray(descs)) {
-	                        descs = [descs];
-	                    }
-	                    var id = name + '_' + title[0];
-	                    var titleHtml = _react2.default.createElement(
-	                        "span",
-	                        { className: cls, id: id },
-	                        title[1]
-	                    );
-	                    if (reading) {
-	                        titleHtml = _react2.default.createElement(
+	            var rows = this.props.items.map(function (aItem) {
+	                var title = aItem[0];
+	                if (!Array.isArray(title)) {
+	                    title = [title, title];
+	                }
+	                var cls = '';
+	                if (title[0] === mark) {
+	                    cls += 'marked';
+	                }
+	                var reading = aItem[1];
+	                var desc = aItem[2];
+	                var id = name + '_' + title[0];
+	                var titleHtml = _react2.default.createElement(
+	                    "span",
+	                    { className: cls, id: id },
+	                    title[1]
+	                );
+	                if (reading) {
+	                    titleHtml = _react2.default.createElement(
+	                        "div",
+	                        null,
+	                        _react2.default.createElement(
 	                            "div",
-	                            null,
-	                            _react2.default.createElement(
-	                                "div",
-	                                { className: "explanation-table__title-ruby" },
-	                                reading
-	                            ),
-	                            titleHtml
-	                        );
-	                    }
-	                    var count = descs.length;
-	                    var desc = descs.shift();
-	                    rows.push(_react2.default.createElement(
-	                        "tr",
-	                        { key: id + count },
-	                        _react2.default.createElement(
-	                            "th",
-	                            { className: "explanation-table__title-cell", rowSpan: count },
-	                            titleHtml
+	                            { className: "explanation-table__title-ruby" },
+	                            reading
 	                        ),
-	                        _react2.default.createElement(
-	                            "td",
-	                            { className: "explanation-table__text-cell" },
-	                            desc
-	                        )
-	                    ));
-	                    var _iteratorNormalCompletion3 = true;
-	                    var _didIteratorError3 = false;
-	                    var _iteratorError3 = undefined;
-
-	                    try {
-	                        for (var _iterator3 = descs[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-	                            var desc = _step3.value;
-
-	                            rows.push(_react2.default.createElement(
-	                                "tr",
-	                                { key: id + descs.length },
-	                                _react2.default.createElement(
-	                                    "td",
-	                                    { className: "explanation-table__text-cell" },
-	                                    desc
-	                                )
-	                            ));
-	                        }
-	                    } catch (err) {
-	                        _didIteratorError3 = true;
-	                        _iteratorError3 = err;
-	                    } finally {
-	                        try {
-	                            if (!_iteratorNormalCompletion3 && _iterator3.return) {
-	                                _iterator3.return();
-	                            }
-	                        } finally {
-	                            if (_didIteratorError3) {
-	                                throw _iteratorError3;
-	                            }
-	                        }
-	                    }
+	                        titleHtml
+	                    );
 	                }
-	            } catch (err) {
-	                _didIteratorError2 = true;
-	                _iteratorError2 = err;
-	            } finally {
-	                try {
-	                    if (!_iteratorNormalCompletion2 && _iterator2.return) {
-	                        _iterator2.return();
-	                    }
-	                } finally {
-	                    if (_didIteratorError2) {
-	                        throw _iteratorError2;
-	                    }
-	                }
-	            }
-
+	                return _react2.default.createElement(
+	                    "tr",
+	                    { key: id },
+	                    _react2.default.createElement(
+	                        "th",
+	                        { className: "explanation-table__title-cell" },
+	                        titleHtml
+	                    ),
+	                    _react2.default.createElement(
+	                        "td",
+	                        { className: "explanation-table__text-cell" },
+	                        desc
+	                    )
+	                );
+	            });
 	            return _react2.default.createElement(
 	                "table",
 	                { className: "explanation-table" },
