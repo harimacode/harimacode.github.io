@@ -38,17 +38,6 @@
 #top-container {
     position: fixed;
 }
-#peatix a {
-    border: 1px solid #669966;
-    background: linear-gradient(to bottom, #99cc99, #66cc66);
-    background: -webkit-linear-gradient(to bottom, #99cc99, #66cc66);
-    color: white;
-    border-radius: 0.25em;
-    display: inline-block;
-    margin: 0.25em auto 0;
-    padding: 0.25em 0.5em;
-    text-shadow: 1px 1px #339933;
-}
 
 /* month */
 #monthlyCalendar {
